@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yantra AI | CCTV-Powered Warehouse Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transform existing CCTV cameras into an AI-powered warehouse surveillance system that detects threats in real-time">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        :root {
+            --primary: #0F4C75;
+            --primary-dark: #0A3A5A;
+            --secondary: #3282B8;
+            --accent: #BBE1FA;
+            --alert: #FF5A5F;
+            --dark: #1B262C;
+            --light: #F8F9FA;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ----- Consistent Navbar from Homepage ----- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #fff;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: bold;
+            color: #000;
+        }
+        .logo img {
+            max-height: 50px;
+            width: auto;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            margin: 0 15px;
+            color: #000;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px;
+            bottom: -5px;
+            left: 0;
+            background: #29abb5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .contact-btn {
+            padding: 8px 16px;
+            background: linear-gradient(to right, #ffffff, #ffffff);
+            color: #fff;
+            border-radius: 4px;
+            font-weight: 600;
+            border: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(to right, #e1dfdf, #f2f2f4);
+            transform: scale(1.05);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+            min-width: 200px;
+            flex-direction: column;
+            gap: 5px;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .nav-item:hover .dropdown {
+            display: flex;
+            opacity: 1;
+        }
+
+        .dropdown-column {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .dropdown-column a {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #000;
+            font-weight: 500;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .dropdown-column a i {
+            margin-right: 10px;
+            color: #364364;
+        }
+
+        .dropdown-column a:hover {
+            background: #f1f1f1;
+            color: #364364;
+            border-radius: 4px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.open .top {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.open .middle {
+            opacity: 0;
+        }
+
+        .hamburger.open .bottom {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* ----- Hero Section with 3D Particles ----- */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #0F4C75 0%, #1B262C 100%);
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 70px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            z-index: 1;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn, .secondary-btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .primary-btn {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .secondary-btn {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .secondary-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* ----- AI Detection Grid ----- */
+        .detections {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+
+        .detection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .detection-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .detection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .detection-img-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .detection-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .detection-card:hover .detection-img {
+            transform: scale(1.1);
+        }
+
+        .detection-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--alert);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(255,90,95,0.3);
+        }
+
+        .detection-content {
+            padding: 25px;
+        }
+
+        .detection-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .detection-desc {
+            color: var(--dark);
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .detection-features {
+            list-style-type: none;
+        }
+
+        .detection-feature {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.95rem;
+        }
+
+        .detection-feature::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--secondary);
+        }
+
+        /* ----- AI Threat Matrix ----- */
+        .threat-matrix {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+        }
+
+        .matrix-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .matrix-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .matrix-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .matrix-desc {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .matrix-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            align-items: center;
+        }
+
+        .matrix-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .matrix-item:hover .matrix-icon {
+            background: var(--accent);
+            color: var(--primary);
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .matrix-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .matrix-text p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .matrix-visual {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            animation: pulse 6s infinite alternate;
+            border-radius: 15px;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* ----- Real-Time Alerts ----- */
+        .alerts-system {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .alerts-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .alerts-visual {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+
+        .alerts-visual:hover {
+            transform: translateY(-10px);
+        }
+
+        .alerts-img {
+            width: 100%;
+            display: block;
+        }
+
+        .alerts-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .alerts-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            align-items: flex-start;
+        }
+
+        .alert-item:hover {
+            background: rgba(187, 225, 250, 0.2);
+            transform: translateX(5px);
+        }
+
+        .alert-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .alert-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .alert-text p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* ----- AI Heatmap Technology ----- */
+        .heatmap-tech {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .heatmap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .heatmap-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .heatmap-desc {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .heatmap-visual {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+        }
+
+        .heatmap-visual:hover {
+            transform: scale(1.02);
+        }
+
+        .heatmap-img {
+            width: 100%;
+            display: block;
+        }
+
+        .heatmap-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+            mix-blend-mode: multiply;
+            opacity: 0.8;
+            animation: heatmapPulse 8s infinite alternate;
+        }
+
+        @keyframes heatmapPulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 0.9; }
+            100% { opacity: 0.7; }
+        }
+
+        .heatmap-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .critical { background: #FF3D3D; }
+        .high { background: #FF8C3D; }
+        .medium { background: #FFEB3D; }
+        .low { background: #4CAF50; }
+
+        /* ----- Integration Section ----- */
+        .integration {
+            padding: 100px 20px;
+            background: white;
+            text-align: center;
+        }
+
+        .integration-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .integration-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .integration-desc {
+            font-size: 1.1rem;
+            color: var(--dark);
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .integration-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .integration-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .integration-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+        }
+
+        .integration-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* ----- CTA Section ----- */
+        .cta-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-desc {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* ----- Consistent Footer from Homepage ----- */
+        .footer {
+            background: #0a192f;
+            padding: 60px 20px 30px;
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1 1 200px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #7eabc8;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 0.95em;
+            color: #e6e6e6;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a:hover {
+            color: #7eabc8;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            font-size: 1.2em;
+            color: #e6e6e6;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #7eabc8;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e6e6e6;
+            font-size: 0.9em;
+        }
+
+        /* ----- Responsive Design ----- */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title, .matrix-title, .alerts-title, .heatmap-title, .integration-title, .cta-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 10px;
+                justify-content: space-between;
+            }
+
+            .logo img {
+                max-height: 40px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 1.2rem;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-item {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dropdown {
+                position: static;
+                display: none;
+                flex-direction: column;
+                background: #f8f8f8;
+                padding: 15px;
+                border-radius: 6px;
+                margin-top: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, opacity 0.3s ease;
+            }
+
+            .nav-item.open .dropdown {
+                display: flex;
+                max-height: 1000px;
+                opacity: 1;
+            }
+
+            .dropdown-column {
+                width: 100%;
+            }
+
+            .dropdown-column a {
+                justify-content: center;
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                height: auto;
+                min-height: 80vh;
+                padding: 20px;
+                text-align: center;
+                justify-content: center;
+                margin-top: 70px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-content {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .matrix-container, .alerts-container {
+                flex-direction: column;
+            }
+            
+            .matrix-visual, .alerts-visual {
+                width: 100%;
+                height: 300px;
+            }
+            
+            .detection-grid, .integration-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer {
+                padding: 20px 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .footer-column {
+                flex: 1 1 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .footer-column h4 {
+                font-size: 1rem;
+            }
+
+            .footer-column a,
+            .footer-column p {
+                font-size: 0.85em;
+                margin-bottom: 5px;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .copyright {
+                margin-top: 15px;
+                font-size: 0.75em;
+            }
+        
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .primary-btn, .secondary-btn, .cta-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .section-title, .matrix-title, .alerts-title, .heatmap-title, .integration-title, .cta-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle, .matrix-desc, .heatmap-desc, .integration-desc, .cta-desc {
+                font-size: 1rem;
+            }
+            
+            .detection-grid, .integration-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .heatmap-legend {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .matrix-visual {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    height: 400px;
+    background: url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+    animation: pulse 6s infinite alternate;
+    border-radius: 15px;
+    overflow: hidden; /* Ensure the image doesn't overflow */
+}
+
+.matrix-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+    display: block;
+    border-radius: 15px; /* Match the container's border-radius */
+}
+
+.alerts-visual {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+}
+
+.alerts-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+    display: block;
+    border-radius: 15px; /* Match the container's border-radius */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+    .matrix-visual {
+        height: 300px; /* Already set in your code */
+    }
+
+    .alerts-visual {
+        height: 300px; /* Add this to ensure consistent height on mobile */
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Consistent Navbar from Homepage -->
+    <header class="navbar">
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+             <img src="LOGO.jpg" alt="Yantra AI" style="height: 50px;">
+             <span style="font-size: 1.7rem; font-weight: bold; color: #00849B;">Yantra</span><span style="font-size: 1.7rem; font-weight: bold; color: #000000;">AI</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="nav-item">
+                <a href="#industries" aria-haspopup="true" class="industries-toggle">Industries</a>
+                <div class="dropdown" role="menu">
+                    <div class="dropdown-column">
+                        <a href="retail.html"><i class="fas fa-store"></i> Retail </a>
+                        <a href="food.html"><i class="fas fa-utensils"></i> Food </a>
+                        <a href="textile.html"><i class="fas fa-industry"></i> Textile Mill </a>
+                        <a href="warehouse.html"><i class="fas fa-warehouse"></i> Warehouses </a>
+                        <a href="jewellery.html"><i class="fas fa-gem"></i> Jewellery </a>
+                        <a href="tourism.html"><i class="fas fa-hotel"></i> Tourism / Hospitality </a>
+                        <a href="hospital.html"><i class="fas fa-hospital"></i> Hospitals </a>
+                    </div>
+                </div>
+            </div>
+            <a href="careerpage.html">Careers</a>
+            <a href="index.html#industries">Services</a>
+            <a href="aboutpage.html">About</a>
+            <a href="contactpage.html" class="contact-btn">Contact Us</a>
+        </nav>
+        <div id="hamburger" class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+        </div>
+    </header>
+
+    <!-- Hero Section with 3D Particles -->
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1>Your Warehouse Just Got Smarter</h1>
+            <p>Transform existing CCTV cameras into an AI-powered surveillance system that detects threats in real-time and prevents losses before they happen.</p>
+            <div class="cta-buttons">
+                <a href="#demo" class="primary-btn">See It In Action</a>
+                <a href="#contact" class="secondary-btn">Talk To Expert</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Detection Grid -->
+    <section class="detections">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">AI-Powered Threat Detection</h2>
+            <p class="section-subtitle">Our system identifies these critical incidents in real-time through your existing CCTV cameras</p>
+        </div>
+        <div class="detection-grid">
+            <div class="detection-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="detection-img-container">
+                    <img src="prevent.jpg" alt="Theft Detection" class="detection-img">
+                    <div class="detection-badge">LIVE MONITORING</div>
+                </div>
+                <div class="detection-content">
+                    <h3 class="detection-title">Unauthorized Access</h3>
+                    <p class="detection-desc">Instant alerts when personnel enter restricted zones or handle inventory without authorization</p>
+                    <ul class="detection-features">
+                        <li class="detection-feature">Detects after-hours access</li>
+                        <li class="detection-feature">Identifies restricted zone violations</li>
+                        <li class="detection-feature">Flags suspicious loitering</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="detection-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="detection-img-container">
+                    <img src="safety.jpg.jpg" alt="Safety Violation" class="detection-img">
+                    <div class="detection-badge">PREVENT ACCIDENTS</div>
+                </div>
+                <div class="detection-content">
+                    <h3 class="detection-title">Safety Violations</h3>
+                    <p class="detection-desc">Automated detection of unsafe behaviors that could lead to workplace accidents</p>
+                    <ul class="detection-features">
+                        <li class="detection-feature">Missing PPE detection</li>
+                        <li class="detection-feature">Unsafe equipment operation</li>
+                        <li class="detection-feature">Hazardous material handling</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="detection-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="detection-img-container">
+                    <img src="inventory.jpg" alt="Inventory Issues" class="detection-img">
+                    <div class="detection-badge">PROTECT ASSETS</div>
+                </div>
+                <div class="detection-content">
+                    <h3 class="detection-title">Inventory Risks</h3>
+                    <p class="detection-desc">24/7 monitoring for inventory discrepancies and potential theft indicators</p>
+                    <ul class="detection-features">
+                        <li class="detection-feature">Misplaced item detection</li>
+                        <li class="detection-feature">Damaged goods identification</li>
+                        <li class="detection-feature">Suspicious handling patterns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Threat Matrix -->
+    <section class="threat-matrix">
+        <div class="matrix-container">
+            <div class="matrix-content" data-aos="fade-right">
+                <h2 class="matrix-title">Threat Intelligence Matrix</h2>
+                <p class="matrix-desc">Our AI classifies incidents by severity and type, helping you prioritize responses and allocate resources effectively.</p>
+                
+                <div class="matrix-item">
+                    <div class="matrix-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="matrix-text">
+                        <h3>Critical Threats</h3>
+                        <p>Immediate response required (theft in progress, safety emergencies)</p>
+                    </div>
+                </div>
+                
+                <div class="matrix-item">
+                    <div class="matrix-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="matrix-text">
+                        <h3>High Risk</h3>
+                        <p>Urgent attention needed (unauthorized access, safety violations)</p>
+                    </div>
+                </div>
+                
+                <div class="matrix-item">
+                    <div class="matrix-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="matrix-text">
+                        <h3>Medium Risk</h3>
+                        <p>Requires monitoring (suspicious behavior, near misses)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="matrix-visual" data-aos="fade-left" data-aos-delay="200">
+                <img src ="matrix.jpg" >
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-Time Alerts System -->
+    <section class="alerts-system">
+        <div class="alerts-container">
+            <div class="alerts-visual" data-aos="fade-right">
+                <img src="realtime.jpg" alt="Alerts Dashboard" class="alerts-img">
+            </div>
+            <div class="alerts-content" data-aos="fade-left">
+                <h2 class="alerts-title">Real-Time Alert System</h2>
+                
+                <div class="alert-item">
+                    <div class="alert-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="alert-text">
+                        <h3>Instant Notifications</h3>
+                        <p>Receive alerts on any device via SMS, email, or mobile app with incident details</p>
+                    </div>
+                </div>
+                
+                <div class="alert-item">
+                    <div class="alert-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="alert-text">
+                        <h3>Video Evidence</h3>
+                        <p>Every alert includes timestamped video clips showing the incident</p>
+                    </div>
+                </div>
+                
+                <div class="alert-item">
+                    <div class="alert-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="alert-text">
+                        <h3>Analytics Dashboard</h3>
+                        <p>Track incident trends, response times, and high-risk zones</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Heatmap Technology -->
+    <section class="heatmap-tech" id="demo">
+        <div class="heatmap-container" data-aos="fade-up">
+            <h2 class="heatmap-title">AI Risk Heatmap Technology</h2>
+            <p class="heatmap-desc">Our proprietary heatmap visualization identifies patterns and high-risk zones in your warehouse based on historical incident data and real-time monitoring</p>
+            
+            <div class="heatmap-visual">
+                <img src="heatmap.jpg.png" alt="Warehouse Heatmap" class="heatmap-img">
+                
+            </div>
+            
+            <div class="heatmap-legend">
+                <div class="legend-item">
+                    <div class="legend-color critical"></div>
+                    <span>Critical Risk Zone</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color high"></div>
+                    <span>High Risk Zone</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color medium"></div>
+                    <span>Medium Risk Zone</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color low"></div>
+                    <span>Low Risk Zone</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seamless Integration -->
+    <section class="integration">
+        <div class="integration-container" data-aos="fade-up">
+            <h2 class="integration-title">Seamless Integration</h2>
+            <p class="integration-desc">Our solution works with your existing infrastructure to deliver immediate value without costly upgrades</p>
+            
+            <div class="integration-grid">
+                <div class="integration-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="integration-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Existing CCTV Cameras</h3>
+                    <p>Works with 95% of existing IP cameras with no additional hardware</p>
+                </div>
+                
+                <div class="integration-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="integration-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Your Network</h3>
+                    <p>On-premise or cloud deployment options to match your infrastructure</p>
+                </div>
+                
+                <div class="integration-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="integration-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Your Devices</h3>
+                    <p>Access alerts and reports from any smartphone, tablet, or computer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-container" data-aos="zoom-in">
+            <h2 class="cta-title">Ready to Secure Your Warehouse?</h2>
+            <p class="cta-desc">See how our AI surveillance can protect your assets and prevent losses within 48 hours of deployment</p>
+            <a href="contactpage.html" class="cta-btn">Request Demo</a>
+        </div>
+    </section>
+
+    <!-- Consistent Footer from Homepage -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Yantra AI</h4>
+                <p>Get in Touch</p>
+                <div class="social-icons">
+                    <a href="#" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Industries</h4>
+                <a href="retail.html">Retail</a>
+                <a href="food.html">Food</a>
+                <a href="textile.html">Textile Mill</a>
+                <a href="warehouse.html">Warehouses</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookies Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Documentation</a>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="aboutpage.html">About Us</a>
+                <a href="careerpage.html">Careers</a>
+                <a href="#">Blog</a>
+                <a href="contactpage.html">Contact</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Yantra AI. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-quad',
+            once: true,
+            offset: 100
+        });
+
+        // Initialize particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+
+            // Mobile menu toggle
+            const burger = document.getElementById('hamburger');
+            const nav = document.querySelector('.nav-links');
+            const industriesToggle = document.querySelector('.industries-toggle');
+            const dropdown = document.querySelector('.dropdown');
+
+            burger.addEventListener('click', () => {
+                const isOpen = burger.classList.toggle('open');
+                burger.setAttribute('aria-expanded', isOpen);
+                nav.classList.toggle('open');
+                if (!isOpen) {
+                    dropdown.parentElement.classList.remove('open');
+                }
+            });
+
+            industriesToggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    const isOpen = dropdown.parentElement.classList.toggle('open');
+                    dropdown.setAttribute('aria-expanded', isOpen);
+                }
+            });
+
+            document.querySelectorAll('.nav-links a:not(.industries-toggle)').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 767) {
+                        burger.classList.remove('open');
+                        burger.setAttribute('aria-expanded', false);
+                        nav.classList.remove('open');
+                        dropdown.parentElement.classList.remove('open');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

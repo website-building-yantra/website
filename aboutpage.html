@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Yantra AI</title>
+  <meta name="description" content="Discover Yantra AI's mission, leadership, and expert team in delivering AI-driven industrial solutions.">
+  <meta name="keywords" content="Yantra AI, AI solutions, machine learning, video analytics, computer vision, leadership, about us">
+  <meta name="author" content="Yantra AI">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="LOGO.jpg" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      overflow-x: hidden;
+      padding-top: 80px;
+      background: #f8f9fa;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: #fff;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      height: 70px;
+    }
+
+    .logo {
+      font-weight: bold;
+      color: #000;
+    }
+
+    .logo img {
+      max-height: 50px;
+      width: auto;
+      vertical-align: middle;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover img {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      margin: 0 15px;
+      color: #000;
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px;
+            bottom: -5px;
+            left: 0;
+            background: #29abb5;
+            transition: width 0.3s ease;
+     }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    .contact-btn {
+      padding: 8px 16px;
+      background: linear-gradient(to right, #ffffff, #ffffff);
+      color: #fff;
+      border-radius: 4px;
+      font-weight: 600;
+      border: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background: linear-gradient(to right, #e1e1e2, #e3e3e3);
+      transform: scale(1.05);
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 10px;
+      z-index: 1000;
+      min-width: 200px;
+      flex-direction: column;
+      gap: 5px;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .nav-item:hover .dropdown {
+      display: flex;
+      opacity: 1;
+    }
+
+    .dropdown-column {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .dropdown-column a {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      color: #000;
+      font-weight: 500;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dropdown-column a i {
+      margin-right: 10px;
+      color: #364364;
+    }
+
+    .dropdown-column a:hover {
+      background: #f1f1f1;
+      color: #364364;
+      border-radius: 4px;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+    }
+
+    .hamburger .bar {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #000;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .hamburger.open .top {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.open .middle {
+      opacity: 0;
+    }
+
+    .hamburger.open .bottom {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8%;
+      color: white;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a192f 0%, #145869 100%);
+    }
+
+    .hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.6);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      z-index: 1;
+    }
+
+    .hero-content:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.3rem;
+      color: #f1f1f1;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* General Section Styles */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 100px 20px;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 25px;
+      font-weight: 600;
+      text-align: center;
+      color: #1a1a1a;
+    }
+
+    .subheading {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 1.25rem;
+      color: #4a5a8c;
+      font-weight: 400;
+    }
+
+    /* Vision Section */
+    .story-section {
+      background: #fff;
+      padding: 100px 20px;
+    }
+
+    .story-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 20px;
+      max-width: 1280px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+
+    .story-box {
+      flex: 0 0 23%;
+      background: #f8f9fa;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .story-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .story-box h3 {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      color: #1a1a1a;
+    }
+
+    .story-box p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Leadership Section */
+    .leadership-section {
+      background: linear-gradient(to right, #1f2945, #145869, #243749);
+      padding: 100px 20px;
+      color: white;
+    }
+
+    .leadership-section h2 {
+      color: #ffffff;
+    }
+
+    .leadership-section .subheading {
+      color: #ffffff;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .team-member {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-member img {
+      width: 40%;
+      max-height: 120px;
+      object-fit: cover;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover img {
+      transform: scale(1.05);
+    }
+
+    .team-member h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .team-member p {
+      font-size: 1rem;
+      color: #f1f1f1;
+      font-weight: 400;
+    }
+
+    .team-social {
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      transition: bottom 0.3s ease;
+    }
+
+    .team-member:hover .team-social {
+      bottom: 0;
+    }
+
+    .team-social a {
+      color: #fff;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    .team-social a:hover {
+      color: #7eabc8;
+    }
+
+    /* Expert Panel Section */
+    .expert-section {
+      background: #fff;
+      padding: 100px 20px;
+    }
+
+    .expert-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .expert-carousel {
+      position: relative;
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-item {
+      flex: 0 0 33.33%;
+      padding: 10px;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-item img:hover {
+      transform: scale(1.05);
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .carousel-nav button {
+      background: #7eabc8;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-nav button:hover {
+      background: #364364;
+    }
+
+    .expert-description {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .expert-description:hover {
+      transform: translateY(-5px);
+    }
+
+    .expert-description p {
+      font-size: 1.15rem;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background: #0a192f;
+      padding: 80px 20px 40px;
+      color: white;
+    }
+
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      justify-items: start;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      color: #7eabc8;
+      font-weight: 600;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      font-size: 0.95rem;
+      color: #e6e6e6;
+      line-height: 1.8;
+      transition: color 0.3s ease;
+      margin-bottom: 12px;
+    }
+
+    .footer-column a:hover {
+      color: #7eabc8;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      font-size: 1.3rem;
+      color: #e6e6e6;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #7eabc8;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e6e6e6;
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero .subtitle {
+        font-size: 1.2rem;
+      }
+
+      .story-box {
+        flex: 0 0 24%;
+      }
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-top: 48px;
+      }
+
+      .navbar {
+        padding: 10px;
+      }
+
+      .logo img {
+        max-height: 40px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .nav-item {
+        width: 100%;
+        text-align: center;
+      }
+
+      .dropdown {
+        position: static;
+        display: none;
+        flex-direction: column;
+        background: #f8f8f8;
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+      }
+
+      .nav-item.open .dropdown {
+        display: flex;
+        max-height: 500px;
+        opacity: 1;
+      }
+
+      .dropdown-column {
+        width: 100%;
+      }
+
+      .dropdown-column a {
+        justify-content: center;
+        font-size: 1rem;
+        padding: 10px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero {
+        height: 70vh;
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero .subtitle {
+        font-size: 1.1rem;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .story-grid {
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+
+      .story-box {
+        flex: 0 0 100%;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .carousel-item {
+        flex: 0 0 100%;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .social-icons {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 479px) {
+      body {
+        padding-top: 44px;
+      }
+
+      .logo img {
+        max-height: 30px;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+      }
+
+      .dropdown-column a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero .subtitle {
+        font-size: 1rem;
+      }
+
+      .story-box h3 {
+        font-size: 1.4rem;
+      }
+
+      .story-box p {
+        font-size: 0.95rem;
+      }
+
+      .team-member img {
+        max-height: 180px;
+      }
+
+      .expert-description p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+             <img src="LOGO.jpg" alt="Yantra AI" style="height: 50px;">
+             <span style="font-size: 1.7rem; font-weight: bold; color: #00849B;">Yantra</span><span style="font-size: 1.7rem; font-weight: bold; color: #000000;">AI</span>
+        </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <div class="nav-item">
+        <a href="#industries" aria-haspopup="true" class="industries-toggle">Industries</a>
+        <div class="dropdown" role="menu">
+          <div class="dropdown-column">
+            <a href="retail.html"><i class="fas fa-store"></i> Retail</a>
+            <a href="food.html"><i class="fas fa-utensils"></i> Food</a>
+            <a href="textile.html"><i class="fas fa-industry"></i> Textile Mill</a>
+            <a href="warehouse.html"><i class="fas fa-warehouse"></i> Warehouses</a>
+            <a href="jewellery.html"><i class="fas fa-gem"></i> Jewellery</a>
+            <a href="tourism.html"><i class="fas fa-hotel"></i> Tourism / Hospitality</a>
+            <a href="hospital.html"><i class="fas fa-hospital"></i> Hospitals</a>
+          </div>
+        </div>
+      </div>
+      <a href="careerpage.html">Careers</a>
+      <a href="index.html#industries">Services</a>
+      <a href="aboutpage.html">About</a>
+      <a href="contactpage.html" class="contact-btn">Contact Us</a>
+    </nav>
+    <div id="hamburger" class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="bar top"></span>
+      <span class="bar middle"></span>
+      <span class="bar bottom"></span>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" data-aos="fade-up" data-aos-duration="1200" aria-label="Introduction">
+    <canvas class="hero-canvas" id="particles"></canvas>
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="aboutbg.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content" data-aos="zoom-in" data-aos-delay="300">
+      <h1>Yantra AI</h1>
+      <p class="subtitle">Empowering industries with AI and machine learning for smarter, safer, and more efficient solutions.</p>
+    </div>
+  </section>
+
+  <!-- Our Vision Section -->
+  <section class="story-section" aria-label="Our Vision">
+    <div class="section">
+      <h2 data-aos="fade-up">Our Vision for the Future</h2>
+      <p class="subheading" data-aos="fade-up" data-aos-delay="100">Discover how Yantra AI plans to transform industries with innovative AI and machine learning solutions.</p>
+      <div class="story-grid">
+        <div class="story-box" data-aos="fade-up" data-aos-delay="200">
+          <h3>Advancing Food Industry</h3>
+          <p>We aim to revolutionize the food industry by leveraging AI and machine learning to optimize supply chains, enhance food safety through real-time monitoring, and improve customer experiences with intelligent analytics.</p>
+        </div>
+        <div class="story-box" data-aos="fade-up" data-aos-delay="300">
+          <h3>Empowering Retail</h3>
+          <p>Our future includes deploying advanced video analytics and machine learning to help retailers predict consumer behavior, streamline operations, and enhance security with intelligent, real-time insights.</p>
+        </div>
+        <div class="story-box" data-aos="fade-up" data-aos-delay="400">
+          <h3>Transforming Healthcare</h3>
+          <p>We plan to support healthcare with AI-driven diagnostics, patient monitoring systems, and predictive analytics to improve efficiency and patient outcomes, making facilities smarter and safer.</p>
+        </div>
+        <div class="story-box" data-aos="fade-up" data-aos-delay="500">
+          <h3>Innovating Across Industries</h3>
+          <p>From hospitality to manufacturing, our vision is to deliver tailored AI and machine learning solutions that drive innovation, enhance operational efficiency, and create safer environments across diverse sectors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Team Section -->
+  <section class="leadership-section" aria-label="Leadership Team">
+    <div class="section">
+      <h2 data-aos="fade-up">Our Leadership Team</h2>
+      <p class="subheading" data-aos="fade-up" data-aos-delay="100">Meet the visionaries driving Yantra AI's mission forward.</p>
+      <div class="team-grid" data-aos="fade-up" data-aos-delay="200">
+        <div class="team-member">
+          <img src="ceo.jpg" alt="Mr. CEO" loading="lazy">
+          <h3>Mr. V T Amarnath</h3>
+          <p>Chief Executive Officer</p>
+          <div class="team-social">
+            <a href="https://linkedin.com" target="_blank" aria-label="Mr. CEO's LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Mr. CEO's Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="cto.jpg" alt="Mr. CTO" loading="lazy">
+          <h3>Mr. Bharath Reddy</h3>
+          <p>Chief Technology Officer</p>
+          <div class="team-social">
+            <a href="https://linkedin.com" target="_blank" aria-label="Mr. CTO's LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Mr. CTO's Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="caio.jpg" alt="Mr. CAIO" loading="lazy">
+          <h3> Dr.Ranjit Reddy.B</h3>
+          <p>Chief AI Officer</p>
+          <div class="team-social">
+            <a href="https://linkedin.com" target="_blank" aria-label="Mr. COO's LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Mr. COO's Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+          <div class="team-member">
+          <img src="cso.jpg" alt="Mr. CSO" loading="lazy">
+          <h3> Mr Aanand Venkatachalam</h3>
+          <p> Chief Strategy Officer</p>
+          <div class="team-social">
+            <a href="https://linkedin.com" target="_blank" aria-label="Mr. COO's LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Mr. COO's Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expert Panel Section -->
+  <section class="expert-section" aria-label="Expert Panel">
+    <div class="section">
+      <h2 data-aos="fade-up">Our Expert Panel</h2>
+      <p class="subheading" data-aos="fade-up" data-aos-delay="100">A team of innovators pushing the boundaries of AI and machine learning.</p>
+      <div class="expert-grid">
+        <div class="expert-carousel" data-aos="zoom-in" data-aos-delay="200">
+          <div class="carousel-track">
+            <div class="carousel-item">
+              <img src="expert1.jpg" alt="AI Specialist Team" loading="lazy">
+            </div>
+            <div class="carousel-item">
+              <img src="expert2.jpg" alt="Computer Vision Engineers" loading="lazy">
+            </div>
+            <div class="carousel-item">
+              <img src="expert3.jpg" alt="UI/UX Designers" loading="lazy">
+            </div>
+          </div>
+          <div class="carousel-nav">
+            <button class="carousel-prev" aria-label="Previous slide">Prev</button>
+            <button class="carousel-next" aria-label="Next slide">Next</button>
+          </div>
+        </div>
+        <div class="expert-description" data-aos="fade-up" data-aos-delay="300">
+          <p>
+            <strong>Our Expert Team</strong><br><br>
+            At Yantra AI, our team comprises AI specialists, machine learning engineers, computer vision experts, and UI/UX designers. We collaborate to create intelligent systems that deliver actionable insights through advanced video analytics and predictive modeling.<br><br>
+            Our mission is to empower industries with smarter, safer, and more efficient solutions. By combining cutting-edge AI and machine learning with human-centered design, we transform ideas into impactful realities, driving innovation across retail, food, healthcare, and more.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer --> 
+  <footer class="footer" aria-label="Footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h4>Yantra AI</h4>
+        <p>Connect with us</p>
+        <div class="social-icons">
+          <a href="https://twitter.com/yantraai" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com/company/yantraai" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:contact@yantraai.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h4>Industries</h4>
+        <p><a href="retail.html">Retail</a></p>
+        <p><a href="food.html">Food</a></p>
+        <p><a href="textile.html">Textile Mill</a></p>
+        <p><a href="warehouse.html">Warehouses</a></p>
+      </div>
+      <div class="footer-column">
+        <h4>Support</h4>
+        <p></p><a href="#">Privacy Policy</a>
+        <p></p><a href="#">Cookies Policy</a>
+        <p></p><a href="#">Terms of Service</a>
+        <p></p><a href="#">Documentation</a>
+      </div>
+      <div class="footer-column">
+        <h4>Company</h4>
+        <a href="aboutpage.html">About Us</a><p></p>
+        <a href="#">Careers</a><p></p>
+        <a href="#">Blog</a><p></p>
+        <a href="contactpage.html">Contact</a><p></p>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 Yantra AI. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Navbar Functionality
+      const burger = document.getElementById('hamburger');
+      const nav = document.querySelector('.nav-links');
+      const industriesToggle = document.querySelector('.industries-toggle');
+      const dropdown = document.querySelector('.dropdown');
+
+      burger.addEventListener('click', () => {
+        const isOpen = burger.classList.toggle('open');
+        burger.setAttribute('aria-expanded', isOpen);
+        nav.classList.toggle('open');
+        if (!isOpen) {
+          dropdown.parentElement.classList.remove('open');
+        }
+      });
+
+      industriesToggle.addEventListener('click', (e) => {
+        if (window.innerWidth <= 767) {
+          e.preventDefault();
+          const isOpen = dropdown.parentElement.classList.toggle('open');
+          dropdown.setAttribute('aria-expanded', isOpen);
+        }
+      });
+
+      industriesToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && window.innerWidth <= 767) {
+          e.preventDefault();
+          const isOpen = dropdown.parentElement.classList.toggle('open');
+          dropdown.setAttribute('aria-expanded', isOpen);
+        }
+      });
+
+      document.querySelectorAll('.nav-links a:not(.industries-toggle)').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 767) {
+            burger.classList.remove('open');
+            burger.setAttribute('aria-expanded', false);
+            nav.classList.remove('open');
+            dropdown.parentElement.classList.remove('open');
+          }
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 767 && !e.target.closest('.nav-item') && !e.target.closest('.hamburger')) {
+          dropdown.parentElement.classList.remove('open');
+          dropdown.setAttribute('aria-expanded', false);
+        }
+      });
+
+      // Carousel Functionality
+      const track = document.querySelector('.carousel-track');
+      const items = document.querySelectorAll('.carousel-item');
+      const prevBtn = document.querySelector('.carousel-prev');
+      const nextBtn = document.querySelector('.carousel-next');
+      let currentIndex = 0;
+
+      const updateCarousel = () => {
+        if (items.length === 0) return;
+        const itemWidth = items[0].offsetWidth;
+        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+      };
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = Math.min(currentIndex + 1, items.length - 1);
+        updateCarousel();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = Math.max(currentIndex - 1, 0);
+        updateCarousel();
+      });
+
+      window.addEventListener('resize', updateCarousel);
+
+      // 3D Particles
+      const canvas = document.getElementById('particles');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const particlesGeometry = new THREE.BufferGeometry();
+      const particleCount = 500;
+      const posArray = new Float32Array(particleCount * 3);
+
+      for (let i = 0; i < particleCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 1000;
+      }
+
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      const material = new THREE.PointsMaterial({
+        size: 2,
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.6
+      });
+
+      const particles = new THREE.Points(particlesGeometry, material);
+      scene.add(particles);
+      camera.position.z = 300;
+
+      const animateParticles = () => {
+        requestAnimationFrame(animateParticles);
+        particles.rotation.y += 0.001;
+        particles.rotation.x += 0.0005;
+        renderer.render(scene, camera);
+      };
+
+      animateParticles();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+      });
+    });
+  </script>
+</body>
+</html>

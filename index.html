@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yantra AI - Industrial AI Solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yantra AI provides advanced computer vision and AI solutions for industrial automation and optimization">
+    <meta name="keywords" content="Yantra AI, industrial AI, computer vision, automation, predictive maintenance">
+    <meta property="og:title" content="Yantra AI - Industrial AI Solutions">
+    <meta property="og:description" content="Yantra AI provides advanced computer vision and AI solutions for industrial automation and optimization">
+    <meta property="og:image" content="https://yantraai.com/images/og-image.jpg">
+    <meta property="og:url" content="https://yantraai.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" href="LOGO.jpg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #111;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #fff;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: bold;
+            color: #000;
+        }
+        .logo img {
+            max-height: 60px;
+            width: auto;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            margin: 0 15px;
+            color: #000;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px;
+            bottom: -5px;
+            left: 0;
+            background: #29abb5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .contact-btn {
+            padding: 8px 16px;
+            background: linear-gradient(to right, #ffffff, #ffffff);
+            color: #fff;
+            border-radius: 4px;
+            font-weight: 600;
+            border: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(to right, #e1dfdf, #f2f2f4);
+            transform: scale(1.05);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+            min-width: 200px;
+            flex-direction: column;
+            gap: 5px;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .nav-item:hover .dropdown {
+            display: flex;
+            opacity: 1;
+        }
+
+        .dropdown-column {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .dropdown-column a {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #000;
+            font-weight: 500;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .dropdown-column a i {
+            margin-right: 10px;
+            color: #364364;
+        }
+
+        .dropdown-column a:hover {
+            background: #f1f1f1;
+            color: #364364;
+            border-radius: 4px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.open .top {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.open .middle {
+            opacity: 0;
+        }
+
+        .hamburger.open .bottom {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            padding: 0 8%;
+            color: rgb(0, 0, 0);
+            margin-top: 70px;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            background: rgb(237, 239, 241);
+            padding: 30px;
+            border-radius: 12px;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .hero-content:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 8px 25px rgba(75, 79, 89, 0.971);
+            background: rgb(255, 255, 255);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero .intro {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .hero .desc {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+
+        .video-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            font-weight: bold;
+            color: #125c7e;
+            border: 2px solid rgb(0, 0, 0);
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .video-btn:hover {
+            background-color: rgba(54, 149, 184, 0.2);
+        }
+
+        .partners-section {
+            padding: 60px 0;
+            background-image: radial-gradient(circle, rgb(17, 76, 80),  rgb(9, 25, 34), rgb(8, 18, 29));
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .partners-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .partners-section h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: #7584a8;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .partners-container {
+            display: flex;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+
+        .partners-slide {
+            display: flex;
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .partner-logo {
+            width: 150px;
+            height: 100px;
+            background: #fff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .partner-logo:hover {
+            transform: scale(1.4) rotate(0deg)  ;
+            box-shadow: 10px 20px 25px rgba(29, 131, 135, 0.4);
+            background: #f1f1f1;
+        }
+
+        .partner-logo img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .bento-section {
+            background: linear-gradient(to right, #1f2945, #145869, #243749);
+            max-width: flex;
+            margin:  auto;
+            padding: 60px 20px;
+            border-radius: 0px;
+            text-align: center;
+            color: white;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .bento-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            color: #fff;
+        }
+
+        .bento-box h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .bento-box p {
+            color: #e6e6e6;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .bento-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .value-proposition-section {
+            background-image: radial-gradient(circle, rgb(17, 76, 80),  rgb(9, 25, 34), rgb(8, 18, 29));
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .value-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .value-left, .value-right {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .value-label {
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .orange {
+            color: #ff4500;
+            font-weight: bold;
+        }
+
+        .blue-bg {
+            background-color: #494b53;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .value-left h2 {
+            font-size: 2.2rem;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .value-right p {
+            font-size: 1.05em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #e6e6e6;
+        }
+
+        .demo-btn {
+            display: inline-block;
+            padding: 14px 24px;
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+
+        .demo-btn:hover {
+            background: white;
+            color: #364364;
+        }
+
+        .use-cases {
+            background: linear-gradient(to right, #1f2945, #145869, #243749);
+            padding: 80px 20px;
+            text-align: center;
+            color: rgb(0, 0, 0);
+        }
+
+        .use-cases h2 {
+            color: #ffffff;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            flex: 1 1 300px;
+            max-width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            min-width: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover .image {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(74, 71, 71, 0.8);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .container:hover .overlay {
+            opacity: 1;
+        }
+
+        .text {
+            color: rgb(255, 255, 255);
+            text-align: left;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .text ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .industry-title {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #fffdfd;
+        }
+
+        .vision-platform {
+            background-image: radial-gradient(circle, rgb(17, 76, 80),  rgb(9, 25, 34), rgb(8, 18, 29));
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .left-column, .right-column {
+            flex: 1 1 45%;
+            min-width: 300px;
+        }
+
+        .section-label span {
+            color: #7eabc8;
+            font-weight: 900;
+            letter-spacing: 3px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        .vision-platform h2 {
+            font-size: 2rem;
+            margin: 15px 0 30px;
+            line-height: 1.3;
+        }
+
+        .feature-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+
+        .features-list {
+            padding-left: 20px;
+        }
+
+        .features-list li {
+            font-size: 1.1em;
+            margin: 15px 0;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .features-list li:before {
+            content: "•";
+            color: #7eabc8;
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+
+        .right-column .description {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            border: 2px solid #fff;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+            background: transparent;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #364364;
+        }
+
+        .image-block img {
+            max-width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+        }
+
+        /* Improved Testimonial Section */
+        .testimonials {
+            background: linear-gradient(to right, #1f2945, #145869, #243749);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .testimonials h2 {
+            color: #ffffff;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+        }
+
+        .testimonial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-slider {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 20px;
+        }
+
+        .testimonial {
+            flex: 0 0 calc(33.333% - 20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .testimonial .client-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #ffffff;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .author {
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .author span {
+            display: block;
+            font-size: 0.9em;
+            color: #e6e6e6;
+            font-weight: normal;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .slider-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .achievements {
+            background-image: radial-gradient(circle, rgb(17, 76, 80),  rgb(9, 25, 34), rgb(8, 18, 29));
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .achievements h2 {
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+        }
+
+        .achievement-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .achievement-card {
+            flex: 1 1 300px;
+            max-width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .achievement-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .achievement-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .achievement-card p {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .newsletter {
+            background: linear-gradient(to right, #1f2945, #145869, #243749);   
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .signup-box {
+            flex: 1 1 500px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            text-align: left;
+            backdrop-filter: blur(10px);
+        }
+
+        .signup-box h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #ffffff;
+        }
+
+        .signup-box p {
+            margin-bottom: 25px;
+            color: #e6e6e6;
+        }
+
+        .signup-box input[type="email"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            font-size: 1em;
+            background: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+        }
+
+        .terms-container {
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #e6e6e6;
+        }
+
+        .terms-container a {
+            color: #7eabc8;
+            text-decoration: underline;
+        }
+
+        .signup-box button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #7584a8, #364364);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .signup-box button:hover {
+            background-color: rgb(95, 167, 243);
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: #0a192f;
+            padding: 60px 20px 30px;
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1 1 200px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #7eabc8;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 0.95em;
+            color: #e6e6e6;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a:hover {
+            color: #7eabc8;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            font-size: 1.2em;
+            color: #e6e6e6;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #7eabc8;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e6e6e6;
+            font-size: 0.9em;
+        }
+
+        .from-left, .from-right {
+            opacity: 0;
+            transition: all 0.8s ease-in-out;
+        }
+
+        .animate-left {
+            opacity: 1;
+            animation: slideInLeft 0.8s forwards;
+        }
+
+        .animate-right {
+            opacity: 1;
+            animation: slideInRight 0.8s forwards;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+                font-size: 1rem;
+            }
+
+            .dropdown {
+                min-width: 180px;
+            }
+
+            .testimonial {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 10px;
+                justify-content: space-between;
+            }
+
+            .logo img {
+                max-height: 40px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 1.2rem;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-item {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dropdown {
+                position: static;
+                display: none;
+                flex-direction: column;
+                background: #f8f8f8;
+                padding: 15px;
+                border-radius: 6px;
+                margin-top: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, opacity 0.3s ease;
+            }
+
+            .nav-item.open .dropdown {
+                display: flex;
+                max-height: 500px;
+                opacity: 1;
+            }
+
+            .dropdown-column {
+                width: 100%;
+            }
+
+            .dropdown-column a {
+                justify-content: center;
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                height: auto;
+                min-height: 80vh;
+                padding: 20px;
+                text-align: center;
+                justify-content: center;
+                margin-top: 70px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-content {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .partners-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .partner-logo {
+                width: 120px;
+                height: 80px;
+            }
+
+            .bento-section,
+            .value-proposition-section,
+            .use-cases,
+            .vision-platform,
+            .testimonials,
+            .achievements,
+            .newsletter {
+                padding: 60px 20px;
+            }
+
+            .section-title,
+            .use-cases h2,
+            .testimonials h2,
+            .achievements h2 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                flex: 1 1 100%;
+            }
+
+            .signup-box {
+                padding: 25px;
+            }
+
+            .testimonial {
+                flex: 0 0 100%;
+            }
+            
+            .slider-nav {
+                margin-top: 20px;
+            }
+            
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .footer {
+                padding: 20px 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .footer-column {
+                flex: 1 1 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .footer-column h4 {
+                font-size: 1rem;
+            }
+
+            .footer-column a,
+            .footer-column p {
+                font-size: 0.85em;
+                margin-bottom: 5px;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .copyright {
+                margin-top: 15px;
+                font-size: 0.75em;
+            }
+        }
+
+        @media (max-width: 479px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .intro {
+                font-size: 1rem;
+            }
+
+            .demo-btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+                text-align: center;
+            }
+
+            .logo img {
+                max-height: 30px;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            .dropdown-column a {
+                font-size: 0.9rem;
+                padding: 6px 10px;
+            }
+
+            .testimonial p {
+                font-size: 1em;
+                line-height: 1.5;
+            }
+
+            .author {
+                font-size: 0.9em;
+            }
+
+            .author span {
+                font-size: 0.8em;
+            }
+        }
+        
+    </style>
+</head>
+<body class="home-page">
+    <header class="navbar">
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+             <img src="LOGO.jpg" alt="Yantra AI" style="height: 50px;">
+             <span style="font-size: 1.7rem; font-weight: bold; color: #00849B;">Yantra</span><span style="font-size: 1.7rem; font-weight: bold; color: #000000;">AI</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="nav-item">
+                <a href="#industries" aria-haspopup="true" class="industries-toggle">Industries</a>
+                <div class="dropdown" role="menu">
+                    <div class="dropdown-column">
+                        <a href="retail.html"><i class="fas fa-store"></i> Retail </a>
+                        <a href="food.html"><i class="fas fa-utensils"></i> Food </a>
+                        <a href="textile.html"><i class="fas fa-industry"></i> Textile Mill </a>
+                        <a href="warehouse.html"><i class="fas fa-warehouse"></i> Warehouses </a>
+                        <a href="jewellery.html"><i class="fas fa-gem"></i> Jewellery </a>
+                        <a href="tourism.html"><i class="fas fa-hotel"></i> Tourism / Hospitality </a>
+                        <a href="hospital.html"><i class="fas fa-hospital"></i> Hospitals </a>
+                    </div>
+                </div>
+            </div>
+            <a href="careerpage.html">Careers</a>
+            <a href="index.html#industries">Services</a>
+            <a href="aboutpage.html">About</a>
+            <a href="contactpage.html" class="contact-btn">Contact Us</a>
+        </nav>
+        <div id="hamburger" class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+             <source src="https://res.cloudinary.com/dko9whxz5/video/upload/v1751103950/fckqpfdje8oa2q48tgdj.mp4" type="video/mp4">
+             <source src="bg_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <h1>YANTRA AI</h1>
+            <p class="intro">
+                Delivering intelligent automation and AI-driven solutions for modern industry.
+            </p>
+            <p class="desc">
+                Our advanced tools help industries operate smarter, safer, and more efficiently — enabling impactful digital transformation.
+            </p>
+            <a href="#value-proposition" class="video-btn">Learn more ></a>
+        </div>
+    </section>
+
+    <section class="partners-section" id="partners">
+    <h2 data-aos="fade-up" data-aos-delay="50">Supporting Partners</h2>
+    <div class="partners-container" data-aos="fade-in-left">
+
+        <div class="partners-slide">
+            <div class="partner-logo">
+                <a href="https://www.thesouthindiancoffeehouse.com/" target="_blank">
+                    <img src="partner1.jpg" alt="Partner 1">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo2.jpg" alt="Partner 2">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo3.jpg" alt="Partner 3">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="https://www.thesouthindiancoffeehouse.com/" target="_blank">
+                    <img src="partner1.jpg" alt="Partner 4">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo5.jpg" alt="Partner 5">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo6.jpg" alt="Partner 6">
+                </a>
+            </div>
+        </div>
+
+        <div class="partners-slide">
+            <div class="partner-logo">
+                <a href="https://www.thesouthindiancoffeehouse.com/" target="_blank">
+                    <img src="partner1.jpg" alt="Partner 1">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo2.jpg" alt="Partner 2">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo3.jpg" alt="Partner 3">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="https://www.thesouthindiancoffeehouse.com/" target="_blank">
+                    <img src="partner1.jpg" alt="Partner 4">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo5.jpg" alt="Partner 5">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo6.jpg" alt="Partner 6">
+                </a>
+            </div>
+        </div>
+
+        <div class="partners-slide">
+            <div class="partner-logo">
+                <a href="https://www.thesouthindiancoffeehouse.com/" target="_blank">
+                    <img src="partner1.jpg" alt="Partner 1">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo2.jpg" alt="Partner 2">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo3.jpg" alt="Partner 3">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="https://www.thesouthindiancoffeehouse.com/" target="_blank">
+                    <img src="partner1.jpg" alt="Partner 4">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo5.jpg" alt="Partner 5">
+                </a>
+            </div>
+            <div class="partner-logo">
+                <a href="#" target="_blank">
+                    <img src="samplelogo6.jpg" alt="Partner 6">
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+    <section class="bento-section">
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">Why Choose Yantra?</h2>
+        <div class="bento-grid" >
+            <div class="bento-box box1" data-aos="fade-up" data-aos-delay="100">
+                <h3>What We Offer</h3>
+                <p>
+                    Intelligent automation, predictive maintenance tools, and real-time industrial analytics that empower your operations.
+                </p>
+            </div>
+            <div class="bento-box box2" data-aos="fade-up" data-aos-delay="200">
+                <h3>Why It's Valuable</h3>
+                <p>
+                    Boost productivity, reduce costs, and make data-driven decisions with our smart, scalable technology stack.
+                </p>
+            </div>
+            <div class="bento-box box3"data-aos="fade-up" data-aos-delay="300">
+                <h3>Who It's For</h3>
+                <p>
+                    Industries like manufacturing, energy, logistics, and infrastructure — anyone aiming to digitize and optimize operations.
+                </p>
+            </div>
+            <div class="bento-box box4" data-aos="fade-up" data-aos-delay="400">
+                <h3>Our Approach</h3>
+                <p>
+                    Modular, cloud-ready, and edge-compatible solutions tailored to your specific use case and operational scale.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="value-proposition-section" id="value-proposition">
+        <div class="value-content">
+            <div class="value-left fade-in-left" data-aos="fade-right" data-aos-delay="100">
+                <div class="value-label">
+                    <span class="orange">Value</span> <span class="blue-bg">Propositions</span>
+                </div>
+                <h2>Proprietary Computer Vision Applications For Enhanced Efficiency And Productivity</h2>
+                <img src="ai1.jpg" data-aos="fade-up" data-aos-delay="200" >
+            </div>
+            
+            <div class="value-right fade-in-right" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
+                <p>
+                    Elevate your operational efficiency with our revolutionary, patented computer vision AI platform.
+                    This state-of-the-art system is engineered to provide real-time, accurate measurements of crucial raw
+                    material properties such as size, moisture, and grade. Leveraging advanced computer vision object
+                    detection technology, our unique SaaS product delivers unparalleled precision and reliability,
+                    boosting productivity across industrial operations. With AI-driven insights at its core, our
+                    platform optimizes performance and streamlines processes, ensuring your operations run at their
+                    peak efficiency.
+                </p>
+                <a href="ContactPage.html" class="demo-btn">Book a demo now</a>
+                <a href="" class="demo-btn">Learn more ></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-cases" id="industries" >
+        <h2 data-aos="fade-up" >WHERE CAN BE USED  </h2>
+        <div class="cards" >
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="container">
+                    <img src="retail.jpg" alt="Retail Industry" class="image">
+                    <div class="overlay">
+                        <div class="text">
+                            <ul>
+                                <li>Customer behavior analysis</li>
+                                <li>Inventory management</li>
+                                <li>Checkout automation</li>
+                                <li>Theft prevention</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="industry-title">Retail</h3>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="container">
+                    <img src="food.jpg" alt="Food Industry" class="image">
+                    <div class="overlay">
+                        <div class="text">
+                            <ul>
+                                <li>Quality control inspection</li>
+                                <li>Packaging verification</li>
+                                <li>Hygiene monitoring</li>
+                                <li>Portion size analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="industry-title">Food</h3>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <div class="container">
+                    <img src="textile.jpg" alt="Textile Industry" class="image">
+                    <div class="overlay">
+                        <div class="text">
+                            <ul>
+                                <li>Fabric defect detection</li>
+                                <li>Pattern recognition</li>
+                                <li>Quality grading</li>
+                                <li>Production monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="industry-title">Textile Mill</h3>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+                <div class="container">
+                    <img src="warehouse.jpg" alt="Warehouse Industry" class="image">
+                    <div class="overlay">
+                        <div class="text">
+                            <ul>
+                                <li>Inventory tracking</li>
+                                <li>Autonomous navigation</li>
+                                <li>Package sorting</li>
+                                <li>Safety monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="industry-title">Warehouses</h3>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="500">
+                <div class="container">
+                    <img src="jewellery.jpg" alt="Jewelry Industry" class="image">
+                    <div class="overlay">
+                        <div class="text">
+                            <ul>
+                                <li>Gemstone quality assessment</li>
+                                <li>Counterfeit detection</li>
+                                <li>Security monitoring</li>
+                                <li>Design verification</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="industry-title">Jewellery</h3>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="600">
+                <div class="container">
+                    <img src="tourism.jpg" alt="Hospitality Industry" class="image">
+                    <div class="overlay">
+                        <div class="text">
+                            <ul>
+                                <li>Guest experience analysis</li>
+                                <li>Facility management</li>
+                                <li>Occupancy monitoring</li>
+                                <li>Service optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="industry-title">Tourism/Hospitality</h3>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="700">
+                <div class="container">
+                    <img src="hospital.jpg" alt="Hospital Industry" class="image">
+                    <div class="overlay">
+                        <div class="text">
+                            <ul>
+                                <li>Patient monitoring</li>
+                                <li>Equipment tracking</li>
+                                <li>Hygiene compliance</li>
+                                <li>Staff safety</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="industry-title">Hospitals</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision-platform" >
+        <div class="content-wrapper">
+            <div class="left-column" data-aos="fade-left" data-aos-duration="1000">
+                <p class="section-label"><span>VISION AI COMPUTING PLATFORM</span></p>
+                <h2>Choose Yantra Computer Vision AI Platform For A Competitive Edge</h2>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Single cockpit for all use cases</h3>
+                    <p>
+                        A centralized interface that enables seamless monitoring, analytics, and management of Vision AI use cases across your entire operation.
+                    </p>
+                </div>
+                <ul class="features-list" data-aos="fade-up" data-aos-delay="400">
+                    <li>Plug–n–play platform</li>
+                    <li>Best in class enterprise AI</li>
+                    <li>Seamless workflow integration</li>
+                </ul>
+            </div>
+            <div class="right-column" data-aos="fade-left" data-aos-duration="1000">
+                <p class="description">
+                    Experience a comprehensive Computer Vision AI stack with Yantra Vision, available both on-premises and on-cloud. Our platform combines cutting-edge AI models with industrial-grade reliability to deliver actionable insights in real-time.
+                </p>
+                <a href="ContactPage.html" class="cta-button" data-aos="zoom-in" data-aos-delay="200">Speak To An Expert</a>
+                <div class="image-block" data-aos="zoom-in-up" data-aos-delay="300">
+                    <img src="ai1.jpg" alt="Vision AI Heat Image" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" >
+        <h2 data-aos="fade-up" >What Our Clients Say</h2>
+        <div class="testimonial-container" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-slider">
+                <div class="testimonial-track" id="testimonial-track">
+                    <div class="testimonial">
+                        <div class="client-photo">👩</div>
+                        <p>"Yantra's AI platform transformed our quality control process, reducing errors by 40% and increasing throughput by 25%."</p>
+                        <div class="author">Vimal<br><span>CEO, ABC company</span></div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="client-photo">👨</div>
+                        <p>"The predictive maintenance solution saved us over $500k in unplanned downtime costs in just the first quarter."</p>
+                        <div class="author">John Smith<br><span>CTO, ABC company</span></div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="client-photo">👩</div>
+                        <p>"Implementation was seamless and the ROI was evident within weeks. The Yantra team provided exceptional support throughout."</p>
+                        <div class="author">Sarath <br><span>Manager, VisionAI</span></div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="client-photo">👨</div>
+                        <p>"We've tried several AI solutions, but Yantra's platform stands out for its accuracy and ease of integration with our existing systems."</p>
+                        <div class="author">David <br><span>Engineer, SmartFlow</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="slider-btn" id="prev-btn" aria-label="Previous testimonial">←</button>
+                <button class="slider-btn" id="next-btn" aria-label="Next testimonial">→</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="achievements">
+        <h2 data-aos="fade-up" data-aos-delay="100">Our Achievements</h2>
+        <div class="achievement-cards" >
+            <div class="achievement-card from-left">
+                <img src="award.png" alt="Trophy">
+                <h3>AI Innovation Award 2023</h3>
+                <p>Recognized for groundbreaking industrial AI applications by the Global Technology Council.</p>
+            </div>
+            <div class="achievement-card from-left">
+                <img src="partnership.png" alt="partner">
+                <h3>20+ Industry Partners</h3>
+                <p>Trusted by leading companies across multiple industrial sectors worldwide.</p>
+            </div>
+            <div class="achievement-card from-left">
+                <img src="deploy.jpg" alt="Deployments">
+                <h3>100+ Successful Deployments</h3>
+                <p>Proven track record of successful implementations across diverse industrial environments.</p>
+            </div>
+            <div class="achievement-card from-right">
+                <img src="patents.jpg" alt="Patent">
+                <h3>10 Patents Granted</h3>
+                <p>Protecting our innovative technologies that are transforming industrial operations.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="newsletter">
+        <div class="newsletter-container" data-aos="fade-up" data-aos-delay="100">
+            <div class="signup-box">
+                <h2>Join Our Newsletter</h2>
+                <p>Stay ahead with the latest in AI and industrial innovation. No spam — just insights.</p>
+                <form action="/subscribe" method="POST">
+                    <input type="email" placeholder="Enter your email" required>
+                    <div class="terms-container">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms & Privacy Policy</a></label>
+                    </div>
+                    <button type="submit" class="cta-button">Submit Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Yantra AI</h4>
+                <p>Get in Touch</p>
+                <div class="social-icons">
+                    <a href="#" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/yantraaisolutions" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@yantraai.in" target="_blank"  aria-label="email">            
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Industries</h4>
+                <a href="retail.html">Retail</a>
+                <a href="food.html">Food</a>
+                <a href="textile.html">Textile Mill</a>
+                <a href="warehouse.html">Warehouses</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookies Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Documentation</a>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="aboutpage.html">About Us</a>
+                <a href="careerpage.html">Careers</a>
+                <a href="#">Blog</a>
+                <a href="contactpage.html">Contact</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Yantra AI. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const burger = document.getElementById('hamburger');
+            const nav = document.querySelector('.nav-links');
+            const industriesToggle = document.querySelector('.industries-toggle');
+            const dropdown = document.querySelector('.dropdown');
+
+            burger.addEventListener('click', () => {
+                const isOpen = burger.classList.toggle('open');
+                burger.setAttribute('aria-expanded', isOpen);
+                nav.classList.toggle('open');
+                if (!isOpen) {
+                    dropdown.parentElement.classList.remove('open');
+                }
+            });
+
+            industriesToggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    const isOpen = dropdown.parentElement.classList.toggle('open');
+                    dropdown.setAttribute('aria-expanded', isOpen);
+                }
+            });
+
+            industriesToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && window.innerWidth <= 767) {
+                    e.preventDefault();
+                    const isOpen = dropdown.parentElement.classList.toggle('open');
+                    dropdown.setAttribute('aria-expanded', isOpen);
+                }
+            });
+
+            document.querySelectorAll('.nav-links a:not(.industries-toggle)').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 767) {
+                        burger.classList.remove('open');
+                        burger.setAttribute('aria-expanded', false);
+                        nav.classList.remove('open');
+                        dropdown.parentElement.classList.remove('open');
+                    }
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767 && !e.target.closest('.nav-item') && !e.target.closest('.hamburger')) {
+                    dropdown.parentElement.classList.remove('open');
+                    dropdown.setAttribute('aria-expanded', false);
+                }
+            });
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('from-left')) {
+                            entry.target.classList.add('animate-left');
+                        } else if (entry.target.classList.contains('from-right')) {
+                            entry.target.classList.add('animate-right');
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('.from-left, .from-right').forEach((el) => {
+                observer.observe(el);
+            });
+
+            document.querySelector('form').addEventListener('submit', (e) => {
+                const email = document.querySelector('input[type="email"]').value;
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    e.preventDefault();
+                    alert('Please enter a valid email address.');
+                }
+            });
+
+            const partnersContainer = document.querySelector('.partners-container');
+            partnersContainer.addEventListener('mouseenter', () => {
+                partnersContainer.style.animationPlayState = 'paused';
+            });
+            partnersContainer.addEventListener('mouseleave', () => {
+                partnersContainer.style.animationPlayState = 'running';
+            });
+
+            // Testimonial slider functionality
+            const track = document.getElementById('testimonial-track');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const testimonials = document.querySelectorAll('.testimonial');
+            
+            let currentIndex = 0;
+            let testimonialWidth = testimonials[0].offsetWidth + 20; // width + gap
+            
+            function updateSlider() {
+                track.style.transform = `translateX(-${currentIndex * testimonialWidth}px)`;
+                
+                // Disable buttons when at boundaries
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= testimonials.length - getVisibleTestimonials();
+            }
+            
+            function getVisibleTestimonials() {
+                if (window.innerWidth >= 1024) return 3;
+                if (window.innerWidth >= 768) return 2;
+                return 1;
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < testimonials.length - getVisibleTestimonials()) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                testimonialWidth = testimonials[0].offsetWidth + 20;
+                updateSlider();
+            });
+            
+            // Initialize slider
+            updateSlider();
+
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.style.opacity = '1';
+                heroContent.style.transform = 'scale(1)';
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            startEvent: 'DOMContentLoaded'
+        });
+    </script>
+</body>
+</html>
