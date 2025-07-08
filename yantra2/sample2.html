@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yantra AI - Industrial AI Vision Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yantra AI's next-gen computer vision platform transforms industrial operations with real-time AI analytics and automation">
+    <meta name="keywords" content="industrial AI, computer vision, predictive maintenance, quality control, Industry 4.0">
+    <meta property="og:title" content="Yantra AI - Industrial AI Vision Platform">
+    <meta property="og:description" content="Transform your industrial operations with AI-powered computer vision solutions">
+    <meta property="og:image" content="https://yantraai.com/images/social-preview.jpg">
+    <meta property="og:url" content="https://yantraai.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap" as="font" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Glide.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.theme.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/particles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    
+    <style>
+        :root {
+            --primary: #00f0ff;
+            --primary-dark: #00a8b5;
+            --secondary: #6c63ff;
+            --dark: #0a192f;
+            --darker: #071120;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            padding-top: 90px;
+        }
+        
+        h1, h2, h3, h4, h5, .display-1, .display-2, .display-3, .display-4 {
+            font-family: 'Timenewroman', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .text-gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            color: var(--light) !important;
+            font-weight: 500;
+            padding: 8px 15px !important;
+            margin: 0 5px;
+            position: relative;
+        }
+        
+        .nav-link:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:before {
+            width: 100%;
+        }
+        
+        .dropdown-menu {
+            background: var(--dark);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+        
+        .dropdown-item {
+            color: var(--light);
+            transition: all 0.2s;
+        }
+        
+        .dropdown-item:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+        
+        /* Buttons */
+        .btn {
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 12px 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+        }
+        
+        .btn-outline-light {
+            border: 2px solid var(--light);
+            color: var(--light);
+            background: transparent;
+        }
+        
+        .btn-outline-light:hover {
+            background: var(--light);
+            color: var(--dark);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 30% 50%, rgba(108, 99, 255, 0.2) 0%, rgba(10, 25, 47, 0) 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            max-width: 600px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        /* Particles Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        /* Feature Cards */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(108, 99, 255, 0.05) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        
+        .feature-card:hover:before {
+            opacity: 1;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(108, 99, 255, 0.1) 100%);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        /* Platform Section */
+        .platform-section {
+            background: url('assets/images/network-pattern.png') center/cover no-repeat;
+            position: relative;
+        }
+        
+        .platform-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.95);
+        }
+        
+        .platform-image {
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: all 0.5s ease;
+        }
+        
+        .platform-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/images/dots-pattern.png') center/cover no-repeat;
+            opacity: 0.1;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+        }
+        
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h5 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 991.98px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .navbar-brand img {
+                height: 35px;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo-white.svg" alt="Yantra AI" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="industriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Industries
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="industriesDropdown">
+                            <li><a class="dropdown-item" href="retail.html"><i class="fas fa-store me-2"></i> Retail</a></li>
+                            <li><a class="dropdown-item" href="food.html"><i class="fas fa-utensils me-2"></i> Food</a></li>
+                            <li><a class="dropdown-item" href="textile.html"><i class="fas fa-industry me-2"></i> Textile</a></li>
+                            <li><a class="dropdown-item" href="warehouse.html"><i class="fas fa-warehouse me-2"></i> Warehousing</a></li>
+                            <li><a class="dropdown-item" href="jewellery.html"><i class="fas fa-gem me-2"></i> Jewellery</a></li>
+                            <li><a class="dropdown-item" href="hospitality.html"><i class="fas fa-hotel me-2"></i> Hospitality</a></li>
+                            <li><a class="dropdown-item" href="healthcare.html"><i class="fas fa-hospital me-2"></i> Healthcare</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="solutions.html">Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="platform.html">Platform</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resources.html">Resources</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn btn-primary" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div id="particles-js"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-delay="100">
+                    <h1 class="hero-title text-gradient">Industrial Vision <span class="text-white">Reimagined</span></h1>
+                    <p class="hero-subtitle">Yantra AI's next-generation computer vision platform transforms industrial operations with real-time AI analytics, predictive maintenance, and autonomous quality control.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#demo" class="btn btn-primary btn-lg">Request Demo</a>
+                        <a href="#solutions" class="btn btn-outline-light btn-lg">Explore Solutions</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <img src="assets/images/hero-visual.png" alt="AI Vision Platform" class="img-fluid floating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-5 bg-darker">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <p class="text-uppercase text-primary mb-2">Trusted by Industry Leaders</p>
+                <h2 class="mb-4">Our Global Partners</h2>
+            </div>
+            <div class="row g-4 justify-content-center align-items-center">
+                <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="assets/images/partners/partner1.svg" alt="Partner 1" class="img-fluid" style="filter: brightness(0) invert(1); opacity: 0.7; height: 40px;">
+                </div>
+                <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="assets/images/partners/partner2.svg" alt="Partner 2" class="img-fluid" style="filter: brightness(0) invert(1); opacity: 0.7; height: 40px;">
+                </div>
+                <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="assets/images/partners/partner3.svg" alt="Partner 3" class="img-fluid" style="filter: brightness(0) invert(1); opacity: 0.7; height: 40px;">
+                </div>
+                <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="250">
+                    <img src="assets/images/partners/partner4.svg" alt="Partner 4" class="img-fluid" style="filter: brightness(0) invert(1); opacity: 0.7; height: 40px;">
+                </div>
+                <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="assets/images/partners/partner5.svg" alt="Partner 5" class="img-fluid" style="filter: brightness(0) invert(1); opacity: 0.7; height: 40px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5" id="solutions">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <p class="text-uppercase text-primary mb-2">Our Solutions</p>
+                <h2 class="mb-4">AI-Powered Industrial Transformation</h2>
+                <p class="lead mx-auto" style="max-width: 700px; opacity: 0.8;">Harness the power of computer vision and machine learning to revolutionize your industrial operations.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Real-Time Quality Inspection</h3>
+                        <p>Automated defect detection with 99.7% accuracy, reducing waste and improving product consistency.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-bold">Learn more <i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Predictive Maintenance</h3>
+                        <p>AI-driven equipment monitoring that predicts failures before they occur, reducing downtime by up to 45%.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-bold">Learn more <i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Process Automation</h3>
+                        <p>End-to-end automation solutions that integrate seamlessly with your existing infrastructure.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-bold">Learn more <i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-network"></i>
+                        </div>
+                        <h3>Operational Intelligence</h3>
+                        <p>Comprehensive dashboards and analytics to optimize your entire production lifecycle.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-bold">Learn more <i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section class="py-5 bg-darker">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <span class="badge bg-primary bg-opacity-10 text-primary mb-3">Why Choose Yantra</span>
+                    <h2 class="mb-4">Transform Your Operations with AI Vision</h2>
+                    <p class="lead mb-4" style="opacity: 0.8;">Our proprietary computer vision platform delivers real-time, accurate measurements of material properties with unparalleled precision, boosting productivity across industrial operations.</p>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-check-circle text-primary me-3"></i>
+                                <p class="mb-0">30-50% increase in production efficiency</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-check-circle text-primary me-3"></i>
+                                <p class="mb-0">90%+ detection accuracy</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-check-circle text-primary me-3"></i>
+                                <p class="mb-0">24/7 continuous monitoring</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-primary me-3"></i>
+                                <p class="mb-0">40% reduction in operational costs</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-primary me-3">See Case Studies</a>
+                        <a href="#" class="btn btn-outline-primary">How It Works</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="position-relative">
+                        <img src="assets/images/value-prop.jpg" alt="AI in Action" class="img-fluid rounded-3">
+                        <div class="position-absolute bottom-0 start-0 p-4 bg-dark bg-opacity-75 rounded-end-3">
+                            <h4 class="text-white">Real-Time Defect Detection</h4>
+                            <p class="text-white-50 mb-0">Our AI identifies microscopic defects invisible to the human eye</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-item">
+                        <div class="stat-number">200+</div>
+                        <p class="mb-0">Successful Deployments</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <p class="mb-0">Industry Partners</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <p class="mb-0">Patents Granted</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <p class="mb-0">Client Retention</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Section -->
+    <section class="py-5 platform-section" id="platform">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-right">
+                    <span class="badge bg-primary bg-opacity-10 text-primary mb-3">Our Platform</span>
+                    <h2 class="mb-4">Yantra Vision AI Platform</h2>
+                    <p class="lead mb-4" style="opacity: 0.8;">A comprehensive computer vision AI stack available both on-premises and on-cloud, combining cutting-edge AI models with industrial-grade reliability.</p>
+                    
+                    <div class="accordion" id="platformAccordion">
+                        <div class="accordion-item bg-transparent border-0 mb-3">
+                            <h3 class="accordion-header" id="headingOne">
+                                <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="fas fa-tachometer-alt me-3 text-primary"></i> Unified Dashboard
+                                </button>
+                            </h3>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#platformAccordion">
+                                <div class="accordion-body text-white-50">
+                                    Centralized interface for monitoring, analytics, and management across your entire operation with customizable widgets and real-time alerts.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-transparent border-0 mb-3">
+                            <h3 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <i class="fas fa-plug me-3 text-primary"></i> Plug-and-Play Deployment
+                                </button>
+                            </h3>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#platformAccordion">
+                                <div class="accordion-body text-white-50">
+                                    Quick integration with existing systems through our extensive library of connectors and APIs, with minimal setup time.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-transparent border-0">
+                            <h3 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <i class="fas fa-shield-alt me-3 text-primary"></i> Enterprise Security
+                                </button>
+                            </h3>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#platformAccordion">
+                                <div class="accordion-body text-white-50">
+                                    Robust data protection with end-to-end encryption, role-based access control, and compliance with industry standards including ISO 27001 and SOC 2.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-primary me-3">Platform Overview</a>
+                        <a href="#" class="btn btn-outline-primary">Technical Specs</a>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <img src="assets/images/platform-dashboard.png" alt="Yantra Platform Dashboard" class="img-fluid platform-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5" id="testimonials">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge bg-primary bg-opacity-10 text-primary mb-3">Testimonials</span>
+                <h2 class="mb-4">Trusted by Industry Leaders</h2>
+                <p class="lead mx-auto" style="max-width: 700px; opacity: 0.8;">Hear from executives who have transformed their operations with Yantra AI solutions.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <img src="assets/images/testimonials/testimonial1.jpg" alt="Client" class="testimonial-avatar">
+                        <p class="mb-4">"Yantra's AI platform transformed our quality control process, reducing errors by 40% and increasing throughput by 25% within the first three months."</p>
+                        <h5 class="mb-1">Jane Doe</h5>
+                        <p class="small text-primary mb-0">CEO, Acme Manufacturing</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <img src="assets/images/testimonials/testimonial2.jpg" alt="Client" class="testimonial-avatar">
+                        <p class="mb-4">"The predictive maintenance solution saved us over $500k in unplanned downtime costs in just the first quarter of implementation."</p>
+                        <h5 class="mb-1">John Smith</h5>
+                        <p class="small text-primary mb-0">CTO, BetaTech Industries</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <img src="assets/images/testimonials/testimonial3.jpg" alt="Client" class="testimonial-avatar">
+                        <p class="mb-4">"Implementation was seamless and the ROI was evident within weeks. The Yantra team provided exceptional support throughout our digital transformation."</p>
+                        <h5 class="mb-1">Sarah Johnson</h5>
+                        <p class="small text-primary mb-0">Operations Director, Vision Logistics</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="testimonial-card">
+                        <img src="assets/images/testimonials/testimonial4.jpg" alt="Client" class="testimonial-avatar">
+                        <p class="mb-4">"The accuracy and reliability of Yantra's computer vision system exceeded our expectations and has become an integral part of our production line."</p>
+                        <h5 class="mb-1">Michael Chen</h5>
+                        <p class="small text-primary mb-0">Production Manager, Global Textiles</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="#" class="btn btn-outline-primary">View All Case Studies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 cta-section" id="demo">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="zoom-in">
+                    <h2 class="mb-4">Ready to Transform Your Operations?</h2>
+                    <p class="lead mb-5">Schedule a personalized demo to see how Yantra AI can revolutionize your industrial processes.</p>
+                    
+                    <form class="row g-3 justify-content-center">
+                        <div class="col-md-8">
+                            <input type="email" class="form-control form-control-lg" placeholder="Enter your business email">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-dark btn-lg w-100">Request Demo</button>
+                        </div>
+                    </form>
+                    
+                    <div class="mt-4">
+                        <a href="#" class="text-white text-decoration-none me-3"><i class="fas fa-calendar-alt me-2"></i> Book a Meeting</a>
+                        <a href="#" class="text-white text-decoration-none"><i class="fas fa-phone-alt me-2"></i> Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <img src="assets/images/logo-white.svg" alt="Yantra AI" class="footer-logo">
+                    <p class="text-white-50 mb-4">Transforming industries with cutting-edge computer vision and AI solutions for the modern industrial landscape.</p>
+                    <div class="d-flex mb-4">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="footer-links">
+                        <h5>Solutions</h5>
+                        <a href="#">Computer Vision</a>
+                        <a href="#">Predictive Analytics</a>
+                        <a href="#">Process Automation</a>
+                        <a href="#">Performance Optimization</a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="footer-links">
+                        <h5>Industries</h5>
+                        <a href="#">Manufacturing</a>
+                        <a href="#">Retail</a>
+                        <a href="#">Logistics</a>
+                        <a href="#">Healthcare</a>
+                        <a href="#">Energy</a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="footer-links">
+                        <h5>Company</h5>
+                        <a href="#">About Us</a>
+                        <a href="#">Leadership</a>
+                        <a href="#">Careers</a>
+                        <a href="#">News</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="footer-links">
+                        <h5>Resources</h5>
+                        <a href="#">Blog</a>
+                        <a href="#">Case Studies</a>
+                        <a href="#">Whitepapers</a>
+                        <a href="#">Webinars</a>
+                        <a href="#">Documentation</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top border-secondary pt-4 mt-4">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-md-start mb-3 mb-md-0">
+                        <p class="mb-0 text-white-50">© 2025 Yantra AI. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="text-white-50 me-3 text-decoration-none">Privacy Policy</a>
+                        <a href="#" class="text-white-50 me-3 text-decoration-none">Terms of Service</a>
+                        <a href="#" class="text-white-50 text-decoration-none">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="btn btn-dark btn-lg back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- Particles.js -->
+    <script src="js/particles.min.js"></script>
+    <!-- Glide.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/glide.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Initialize Particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#00f0ff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#00f0ff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 90,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

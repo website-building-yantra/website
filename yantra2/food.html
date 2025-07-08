@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yantra AI - Food Industry AI Solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yantra AI provides AI-powered food waste prevention and quality control solutions using computer vision">
+    <meta name="keywords" content="Yantra AI, food industry AI, food waste reduction, computer vision, quality control">
+    <meta property="og:title" content="Yantra AI - Food Industry AI Solutions">
+    <meta property="og:description" content="Reduce food waste by up to 40% with our AI-powered computer vision solutions">
+    <meta property="og:image" content="https://yantraai.com/images/food-ai-og.jpg">
+    <meta property="og:url" content="https://yantraai.com/food">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="LOGO.jpg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Calibri', sans-serif;
+            line-height: 1.6;
+            color: #111;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #fff;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: bold;
+            color: #000;
+        }
+        .logo img {
+            max-height: 50px;
+            width: auto;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            margin: 0 15px;
+            color: #000;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px;
+            bottom: -5px;
+            left: 0;
+            background: #29abb5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .contact-btn {
+            padding: 8px 16px;
+            background: linear-gradient(to right, #ffffff, #ffffff);
+            color: #fff;
+            border-radius: 4px;
+            font-weight: 600;
+            border: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(to right, #e1e1e2, #e3e3e3);
+            transform: scale(1.05);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+            min-width: 200px;
+            flex-direction: column;
+            gap: 5px;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .nav-item:hover .dropdown {
+            display: flex;
+            opacity: 1;
+        }
+
+        .dropdown-column {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .dropdown-column a {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #000;
+            font-weight: 500;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .dropdown-column a i {
+            margin-right: 10px;
+            color: #364364;
+        }
+
+        .dropdown-column a:hover {
+            background: #f1f1f1;
+            color: #364364;
+            border-radius: 4px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.open .top {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.open .middle {
+            opacity: 0;
+        }
+
+        .hamburger.open .bottom {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* 3D Particle Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        /* Food Industry Hero Section */
+        .food-hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            padding: 0 8% 50px;
+            margin-top: 0;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+        }
+
+        .food-hero-content {
+            max-width: 600px;
+            background: rgba(237, 239, 241, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .food-hero-content:hover {
+            transform: scale(1.02) rotate(0.5deg);
+            box-shadow: 0 8px 25px rgba(75, 79, 89, 0.971);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .food-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .food-hero .intro {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .food-hero .desc {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .food-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            font-weight: bold;
+            color: #6e6c6c;
+            border: 2px solid rgb(0, 0, 0);
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .food-btn:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Food Problem Section */
+        .food-problem-section {
+            padding: 80px 0;
+            background-image: radial-gradient(circle, rgb(17, 76, 80), rgb(8, 47, 69), rgb(8, 18, 29));
+            color: #e6f1ff;
+            text-align: center;
+        }
+
+        .food-problem-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .food-problem-section h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: #7eabc8;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #8892b0;
+            margin-bottom: 40px;
+        }
+
+        .problem-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            flex: 1 1 250px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #f1c40f;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #8892b0;
+        }
+
+        /* Food Solution Section */
+        .food-solution-section {
+            padding: 80px 20px;
+            background: linear-gradient(to right, #1f2945, #145869, #243749);
+            color: #e6f1ff;
+        }
+
+        .solution-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .solution-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .solution-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .solution-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .solution-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-content p {
+            font-size: 1rem;
+            color: #8892b0;
+        }
+
+        .solution-features {
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: #7eabc8;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .feature-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .feature-text p {
+            font-size: 0.95rem;
+            color: #8892b0;
+            line-height: 1.6;
+        }
+
+        /* How It Works Section */
+        .food-how-it-works {
+            padding: 80px 20px;
+            background-image: radial-gradient(circle, rgb(17, 76, 80), rgb(8, 47, 69), rgb(8, 18, 29));
+            color: #e6f1ff;
+            text-align: center;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 50px auto 0;
+            gap: 20px;
+        }
+
+        .step-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 280px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #f1c40f;
+        }
+
+        .step-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #8892b0;
+        }
+
+        /* Benefits Section */
+        .food-benefits {
+            padding: 80px 20px;
+            background: linear-gradient(to right, #1f2945, #145869, #243749);
+            color: #e6f1ff;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto 0;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: #7eabc8;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #8892b0;
+        }
+
+        /* Case Studies */
+        .food-case-studies {
+            padding: 80px 20px;
+            background-image: radial-gradient(circle, rgb(17, 76, 80), rgb(8, 47, 69), rgb(8, 18, 29));
+            color: #e6f1ff;
+            text-align: center;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto 0;
+        }
+
+        .case-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .case-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .case-card:hover .case-image img {
+            transform: scale(1.1);
+        }
+
+        .case-content {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .case-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .case-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #8892b0;
+            margin-bottom: 20px;
+        }
+
+        .case-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .case-stat {
+            text-align: center;
+        }
+
+        .case-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #f1c40f;
+        }
+
+        .case-stat-label {
+            font-size: 0.9rem;
+            color: #8892b0;
+        }
+
+        /* CTA Section */
+        .food-cta {
+            padding: 100px 20px;
+            background: linear-gradient(to right, #1f2945, #145869, #243749);
+            color: #e6f1ff;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-container p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #8892b0;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: transparent;
+            border: 2px solid #e6f1ff;
+            border-radius: 50px;
+            color: #e6f1ff;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-btn:hover {
+            background: #e6f1ff;
+            color: #364364;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a192f;
+            padding: 60px 20px 30px;
+            color: #e6f1ff;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1 1 200px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #7eabc8;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 0.95em;
+            color: #8892b0;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a:hover {
+            color: #7eabc8;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            font-size: 1.2em;
+            color: #8892b0;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #7eabc8;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #8892b0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 767px) {
+            body {
+                padding-top: 48px;
+            }
+
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .logo img {
+                max-height: 40px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 1.2rem;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-item {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dropdown {
+                position: static;
+                display: none;
+                flex-direction: column;
+                background: #f8f8f8;
+                padding: 15px;
+                border-radius: 6px;
+                margin-top: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, opacity 0.3s ease;
+            }
+
+            .nav-item.open .dropdown {
+                display: flex;
+                max-height: 500px;
+                opacity: 1;
+            }
+
+            .dropdown-column {
+                width: 100%;
+            }
+
+            .dropdown-column a {
+                justify-content: center;
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .food-hero {
+                padding: 20px 20px 50px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .food-hero-content {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .food-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .food-hero .intro {
+                font-size: 1.1rem;
+            }
+
+            .solution-container {
+                grid-template-columns: 1fr;
+            }
+
+            .solution-image {
+                order: -1;
+            }
+
+            .steps-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step-card {
+                max-width: 100%;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer {
+                padding: 20px 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .footer-column {
+                flex: 1 1 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .footer-column h4 {
+                font-size: 1rem;
+            }
+
+            .footer-column a,
+            .footer-column p {
+                font-size: 0.85em;
+                margin-bottom: 5px;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .copyright {
+                margin-top: 15px;
+                font-size: 0.75em;
+            }
+        
+        }
+
+        @media (max-width: 479px) {
+            body {
+                padding-top: 44px;
+            }
+
+            .logo img {
+                max-height: 30px;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            .dropdown-column a {
+                font-size: 0.9rem;
+                padding: 6px 10px;
+            }
+
+            .food-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .food-hero .intro {
+                font-size: 1rem;
+            }
+            
+            .stat-card {
+                flex: 1 1 100%;
+            }
+            
+            .step-card {
+                padding: 20px;
+            }
+            
+            .cta-container h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-container p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+             <img src="LOGO.jpg" alt="Yantra AI" style="height: 50px;">
+             <span style="font-size: 1.7rem; font-weight: bold; color: #00849B;">Yantra</span><span style="font-size: 1.7rem; font-weight: bold; color: #000000;">AI</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="nav-item">
+                <a href="#industries" aria-haspopup="true" class="industries-toggle">Industries</a>
+                <div class="dropdown" role="menu">
+                    <div class="dropdown-column">
+                        <a href="retail.html"><i class="fas fa-store"></i> Retail</a>
+                        <a href="food.html"><i class="fas fa-utensils"></i> Food</a>
+                        <a href="textile.html"><i class="fas fa-industry"></i> Textile Mill</a>
+                        <a href="warehouse.html"><i class="fas fa-warehouse"></i> Warehouses</a>
+                        <a href="jewellery.html"><i class="fas fa-gem"></i> Jewellery</a>
+                        <a href="tourism.html"><i class="fas fa-hotel"></i> Tourism / Hospitality</a>
+                        <a href="hospital.html"><i class="fas fa-hospital"></i> Hospitals</a>
+                    </div>
+                </div>
+            </div>
+            <a href="careerpage.html">Careers</a>
+            <a href="index.html#industries">Services</a>
+            <a href="aboutpage.html">About</a>
+            <a href="contactpage.html" class="contact-btn">Contact Us</a>
+        </nav>
+        <div id="hamburger" class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+        </div>
+    </header>
+
+    <!-- Hero Section with 3D Particles -->
+    <section class="food-hero" data-aos="fade">
+        <div id="particles-js"></div>
+        <div class="food-hero-content" data-aos="fade-up" data-aos-delay="100">
+            <h1>AI-Powered Food Waste Prevention</h1>
+            <p class="intro">Reduce food waste by up to 40% with our computer vision solutions</p>
+            <p class="desc">Our AI-powered CCTV monitoring detects anomalies in real-time, preventing waste and optimizing your food production processes.</p>
+            <a href="#demo" class="food-btn" data-aos="fade-up" data-aos-delay="200">Request Demo</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="food-problem-section">
+        <h2 data-aos="fade-up">The Food Waste Crisis</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">The food industry loses billions annually to preventable waste</p>
+        
+        <div class="problem-stats">
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-value">30-40%</div>
+                <div class="stat-label">of food produced is wasted</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-value">$1T+</div>
+                <div class="stat-label">global annual food waste costs</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-value">8-10%</div>
+                <div class="stat-label">of greenhouse gases from food waste</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="food-solution-section">
+        <div class="solution-container">
+            <div class="solution-image" data-aos="fade-up">
+                <img src="food-ai-system.jpg" alt="AI Food Monitoring System">
+            </div>
+            
+            <div class="solution-content" data-aos="fade-up" data-aos-delay="100">
+                <h2>Our AI Solution</h2>
+                <p>Yantra AI's proprietary computer vision technology transforms your existing CCTV cameras into intelligent food waste prevention systems.</p>
+                
+                <div class="solution-features">
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon"><i class="fas fa-eye"></i></div>
+                        <div class="feature-text">
+                            <h3>Real-time Monitoring</h3>
+                            <p>24/7 visual inspection of production lines, storage, and packaging</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                        <div class="feature-text">
+                            <h3>Anomaly Detection</h3>
+                            <p>Machine learning identifies quality issues, contamination, and process deviations</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="feature-text">
+                            <h3>Predictive Analytics</h3>
+                            <p>Forecast potential waste points before they occur</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="food-how-it-works">
+        <h2 data-aos="fade-up">How Our System Works</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Seamless integration with your existing infrastructure</p>
+        
+        <div class="steps-container">
+            <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Camera Integration</h3>
+                    <p>Connect our AI system to your existing CCTV cameras with no additional hardware needed</p>
+                </div>
+            </div>
+            
+            <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Data Processing</h3>
+                    <p>Our algorithms analyze video feeds in real-time to monitor food quality and equipment performance</p>
+                </div>
+            </div>
+            
+            <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Anomaly Detection</h3>
+                    <p>Machine learning models identify deviations from optimal conditions and potential waste scenarios</p>
+                </div>
+            </div>
+            
+            <div class="step-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Actionable Insights</h3>
+                    <p>Receive real-time alerts and comprehensive analytics to prevent waste and optimize processes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="food-benefits">
+        <h2 data-aos="fade-up">Key Benefits</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Transform your food operations with AI-powered waste prevention</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
+                <h3>Waste Reduction</h3>
+                <p>Decrease food waste by 30-40% through early detection of quality issues and process inefficiencies</p>
+            </div>
+            
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-icon"><i class="fas fa-money-bill-wave"></i></div>
+                <h3>Cost Savings</h3>
+                <p>Significant reduction in lost product and improved operational efficiency</p>
+            </div>
+            
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+                <h3>24/7 Monitoring</h3>
+                <p>Continuous oversight without human fatigue or oversight gaps</p>
+            </div>
+            
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="benefit-icon"><i class="fas fa-chart-pie"></i></div>
+                <h3>Data-Driven Decisions</h3>
+                <p>Comprehensive analytics to optimize your operations and reduce waste</p>
+            </div>
+            
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="benefit-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Sustainability</h3>
+                <p>Reduce your environmental impact by minimizing food waste</p>
+            </div>
+            
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="benefit-icon"><i class="fas fa-award"></i></div>
+                <h3>Compliance</h3>
+                <p>Automated documentation for quality control and safety regulations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="food-case-studies">
+        <h2 data-aos="fade-up">Proven Results</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">See how Yantra can reduce waste in food industry</p>
+        
+        <div class="case-grid">
+            <div class="case-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="case-image">
+                    <img src="bakery-case.jpg" alt="Bakery Case Study">
+                </div>
+                <div class="case-content">
+                    <h3>Large-Scale Bakery</h3>
+                    <p>Reduced dough waste by 38% through real-time quality monitoring of mixing and baking processes</p>
+                    <div class="case-stats">
+                        <div class="case-stat">
+                            <div class="case-stat-value">38%</div>
+                            <div class="case-stat-label">Waste Reduction</div>
+                        </div>
+                        <div class="case-stat">
+                            <div class="case-stat-value">$220K</div>
+                            <div class="case-stat-label">Annual Savings</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="case-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="case-image">
+                    <img src="meat-processing-case.jpg" alt="Meat Processing Case Study">
+                </div>
+                <div class="case-content">
+                    <h3>Meat Processing Plant</h3>
+                    <p>Decreased spoilage by 42% with temperature anomaly detection in cold storage areas</p>
+                    <div class="case-stats">
+                        <div class="case-stat">
+                            <div class="case-stat-value">42%</div>
+                            <div class="case-stat-label">Less Spoilage</div>
+                        </div>
+                        <div class="case-stat">
+                            <div class="case-stat-value">6 Mos</div>
+                            <div class="case-stat-label">ROI Period</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="case-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="case-image">
+                    <img src="dairy-case.jpg" alt="Dairy Case Study">
+                </div>
+                <div class="case-content">
+                    <h3>Dairy Facility</h3>
+                    <p>Improved packaging efficiency by 27% reducing product damage during filling and sealing</p>
+                    <div class="case-stats">
+                        <div class="case-stat">
+                            <div class="case-stat-value">27%</div>
+                            <div class="case-stat-label">Efficiency Gain</div>
+                        </div>
+                        <div class="case-stat">
+                            <div class="case-stat-value">$180K</div>
+                            <div class="case-stat-label">Annual Savings</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="demo" class="food-cta">
+        <div class="cta-container" data-aos="fade-up">
+            <h2>Ready to Reduce Food Waste with AI?</h2>
+            <p>Schedule a demo to see how our system can transform your food operations and significantly reduce waste</p>
+            <a href="contactpage.html" class="cta-btn" data-aos="fade-up" data-aos-delay="100">Request Free Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Yantra AI</h4>
+                <p>Get in Touch</p>
+                <div class="social-icons">
+                    <a href="https://twitter.com/yantraai" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/yantraai" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:contact@yantraai.com" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Industries</h4>
+                <a href="retail.html">Retail</a>
+                <a href="food.html">Food</a>
+                <a href="textile.html">Textile Mill</a>
+                <a href="warehouse.html">Warehouses</a>
+                <a href="jewellery.html">Jewellery</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookies Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Documentation</a>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="aboutpage.html">About Us</a>
+                <a href="careerpage.html">Careers</a>
+                <a href="#">Blog</a>
+                <a href="contactpage.html">Contact</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Yantra AI. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            startEvent: 'DOMContentLoaded'
+        });
+
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 100,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#e6f1ff'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#e6f1ff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: true,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 200,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Mobile navbar toggle
+        document.addEventListener("DOMContentLoaded", () => {
+            const burger = document.getElementById('hamburger');
+            const nav = document.querySelector('.nav-links');
+            const industriesToggle = document.querySelector('.industries-toggle');
+            const dropdown = document.querySelector('.dropdown');
+            
+            burger.addEventListener('click', () => {
+                const isOpen = burger.classList.toggle('open');
+                burger.setAttribute('aria-expanded', isOpen);
+                nav.classList.toggle('open');
+                if (!isOpen) {
+                    dropdown.parentElement.classList.remove('open');
+                }
+            });
+            
+            industriesToggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    const isOpen = dropdown.parentElement.classList.toggle('open');
+                    dropdown.setAttribute('aria-expanded', isOpen);
+                }
+            });
+            
+            industriesToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && window.innerWidth <= 767) {
+                    e.preventDefault();
+                    const isOpen = dropdown.parentElement.classList.toggle('open');
+                    dropdown.setAttribute('aria-expanded', isOpen);
+                }
+            });
+            
+            document.querySelectorAll('.nav-links a:not(.industries-toggle)').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 767) {
+                        burger.classList.remove('open');
+                        burger.setAttribute('aria-expanded', false);
+                        nav.classList.remove('open');
+                        dropdown.parentElement.classList.remove('open');
+                        dropdown.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767 && !e.target.closest('.nav-item') && !e.target.closest('.hamburger')) {
+                    dropdown.parentElement.classList.remove('open');
+                    dropdown.setAttribute('aria-expanded', false);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

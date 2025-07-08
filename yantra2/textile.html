@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yantra TextileAI - AI Solutions for Textile Industry</title>
+    <meta name="description" content="Yantra AI provides advanced computer vision and AI solutions for textile manufacturing automation and optimization">
+    <meta name="keywords" content="Yantra AI, textile AI, fabric inspection, quality control, predictive maintenance, textile automation">
+    <meta property="og:title" content="Yantra TextileAI - AI Solutions for Textile Industry">
+    <meta property="og:description" content="Transform your textile manufacturing with AI-powered quality control and production optimization">
+    <meta property="og:image" content="https://yantraai.com/images/textile-og-image.jpg">
+    <meta property="og:url" content="https://yantraai.com/textile">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="LOGO.jpg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Calibri', sans-serif;
+            line-height: 1.6;
+            color: #111;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #000000;
+            color: #e6f1ff;
+        }
+
+        .btn-primary:hover {
+            background-color: #716d6d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: #7eabc8;
+            color: #e6f1ff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #1a486f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-accent {
+            background-color: #f1c40f;
+            color: #e6f1ff;
+        }
+
+        .btn-accent:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #0a192f;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #f1c40f;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #fff;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .logo img {
+            max-height: 50px;
+            width: auto;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            margin: 0 15px;
+            color: #000;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px;
+            bottom: -5px;
+            left: 0;
+            background: #29abb5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .contact-btn {
+            padding: 8px 16px;
+            background: linear-gradient(to right, #ffffff, #ffffff);
+            color: #fff;
+            border-radius: 4px;
+            font-weight: 600;
+            border: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(to right, #e1e1e2, #e3e3e3);
+            transform: scale(1.05);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+            min-width: 200px;
+            flex-direction: column;
+            gap: 5px;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .nav-item:hover .dropdown {
+            display: flex;
+            opacity: 1;
+        }
+
+        .dropdown-column {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .dropdown-column a {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #000;
+            font-weight: 500;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .dropdown-column a i {
+            margin-right: 10px;
+            color: #364364;
+        }
+
+        .dropdown-column a:hover {
+            background: #f1f1f1;
+            color: #364364;
+            border-radius: 4px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.open .top {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.open .middle {
+            opacity: 0;
+        }
+
+        .hamburger.open .bottom {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 8% 50px;
+            color: #e6f1ff;
+            margin-top: 0;
+            overflow: hidden;
+            background: linear-gradient(to right, #1a1a2e, #16213e, #0f3460);
+            
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            text-align: center;
+            padding: 40px;
+            border-radius: 12px;
+            background: rgba(237, 239, 241, 0.95);
+            color: #111;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hero-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: #261a6d;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            color: #8892b0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f1c40f;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #8892b0;
+            font-weight: 500;
+        }
+
+        /* Solutions Section */
+        .solutions {
+            background-color: #f9f9f9;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        .solution-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #7eabc8;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #7eabc8 0%, #f1c40f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e6f1ff;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #0a192f;
+        }
+
+        .card p {
+            color: #8892b0;
+            font-size: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-item {
+            padding: 30px;
+            border-radius: 12px;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #f1c40f;
+        }
+
+        .feature-item:hover {
+            background: #002244;
+            color: #e6f1ff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item:hover h3,
+        .feature-item:hover p {
+            color: #e6f1ff;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #0a192f;
+            transition: color 0.3s ease;
+        }
+
+        .feature-item p {
+            color: #8892b0;
+            transition: color 0.3s ease;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(135deg, #0a192f 0%, #7eabc8 100%);
+            color: #e6f1ff;
+            position: relative;
+            overflow: hidden;
+            
+        }
+
+        .benefits .section-title {
+            color: #e6f1ff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefit-metric {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-metric:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #f1c40f;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: #dcd10e;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            background: linear-gradient(to right, #1f2945, #145869, #243749);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-cases h2 {
+            color: #e6f1ff;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .use-case-card {
+            flex: 1 1 350px;
+            max-width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            min-width: 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .use-case-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 0;
+        }
+
+        .use-case-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .use-case-container:hover .use-case-image {
+            transform: scale(1.1);
+        }
+
+        .use-case-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .use-case-container:hover .use-case-overlay {
+            opacity: 1;
+        }
+
+        .use-case-text {
+            color: #e6f1ff;
+            text-align: left;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .use-case-text ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .use-case-text li {
+            margin-bottom: 8px;
+        }
+
+        .industry-title {
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 1.3em;
+            color: #e6f1ff;
+            padding: 0 20px;
+        }
+
+        .industry-description {
+            padding: 0 20px 20px;
+            color: #8892b0;
+            font-size: 0.95em;
+        }
+
+        /* Technology Section */
+        .technology {
+            background-color: #f9f9f9;
+            position: relative;
+            overflow: hidden;
+            
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #7eabc8;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: #0a192f;
+            margin-bottom: 5px;
+        }
+
+        .tech-desc {
+            color: #8892b0;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: linear-gradient(135deg, #0b423b 0%, #0d1c45 100%, #0b423b 50%);
+            position: relative;
+            overflow: hidden;
+            
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #0a192f;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f5f5f5;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a192f;
+            padding: 60px 20px 30px;
+            color: #e6f1ff;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1 1 200px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #7eabc8;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #f1c40f;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 0.95em;
+            color: #8892b0;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a:hover {
+            color: #7eabc8;
+            transform: translateX(5px);
+        }
+
+        .footer-column a i {
+            margin-right: 8px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #8892b0;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #f1c40f;
+            color: #e6f1ff;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #8892b0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 767px) {
+            body {
+                padding-top: 48px;
+            }
+
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .logo img {
+                max-height: 40px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 1.2rem;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-item {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dropdown {
+                position: static;
+                display: none;
+                flex-direction: column;
+                background: #f8f8f8;
+                padding: 15px;
+                border-radius: 6px;
+                margin-top: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, opacity 0.3s ease;
+            }
+
+            .nav-item.open .dropdown {
+                display: flex;
+                max-height: 500px;
+                opacity: 1;
+            }
+
+            .dropdown-column {
+                width: 100%;
+            }
+
+            .dropdown-column a {
+                justify-content: center;
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                height: auto;
+                min-height: 80vh;
+                padding: 20px 20px 50px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hero-content {
+                padding: 25px;
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .solution-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .use-case-card {
+                flex: 1 1 100%;
+            }
+
+            .tech-stack {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tech-item {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .faq-container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 479px) {
+            body {
+                padding-top: 44px;
+            }
+
+            .logo img {
+                max-height: 30px;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            .dropdown-column a {
+                font-size: 0.9rem;
+                padding: 6px 10px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .stat-item {
+                min-width: 120px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .footer-column {
+                flex: 1 1 100%;
+                text-align: center;
+            }
+
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+             <img src="LOGO.jpg" alt="Yantra AI" style="height: 50px;">
+             <span style="font-size: 1.7rem; font-weight: bold; color: #00849B;">Yantra</span><span style="font-size: 1.7rem; font-weight: bold; color: #000000;">AI</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="nav-item">
+                <a href="#industries" aria-haspopup="true" class="industries-toggle">Industries</a>
+                <div class="dropdown" role="menu">
+                    <div class="dropdown-column">
+                        <a href="retail.html"><i class="fas fa-store"></i> Retail</a>
+                        <a href="food.html"><i class="fas fa-utensils"></i> Food</a>
+                        <a href="textile.html"><i class="fas fa-industry"></i> Textile Mill</a>
+                        <a href="warehouse.html"><i class="fas fa-warehouse"></i> Warehouses</a>
+                        <a href="jewellery.html"><i class="fas fa-gem"></i> Jewellery</a>
+                        <a href="tourism.html"><i class="fas fa-hotel"></i> Tourism / Hospitality</a>
+                        <a href="hospital.html"><i class="fas fa-hospital"></i> Hospitals</a>
+                    </div>
+                </div>
+            </div>
+            <a href="careerpage.html">Careers</a>
+            <a href="index.html#industries">Services</a>
+            <a href="aboutpage.html">About</a>
+            <a href="contactpage.html" class="contact-btn">Contact Us</a>
+        </nav>
+        <div id="hamburger" class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up" data-aos-delay="100">
+                <h1>Revolutionizing Textile Manufacturing with AI</h1>
+                <p>Yantra AI's cutting-edge solutions optimize your textile production, quality control, and supply chain management with unprecedented precision and efficiency.</p>
+                <div class="hero-buttons">
+                    <a href="#solutions" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200">Explore Solutions</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-number">99.7%</div>
+                        <div class="stat-label">Defect Detection</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="500">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">Cost Reduction</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="600">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label">Efficiency Gain</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="section solutions">
+        <div class="container">
+            <h2 class="section-title">AI-Powered Textile Solutions</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px; color: #8892b0;">Our comprehensive AI solutions address every aspect of textile manufacturing, from raw material inspection to finished product quality control.</p>
+            <div class="solution-cards">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Automated Quality Inspection</h3>
+                    <p>Computer vision systems detect defects with 99.7% accuracy in real-time, reducing human error and increasing throughput.</p>
+                    <a href="#" class="btn btn-accent" style="margin-top: 20px; padding: 8px 16px; font-size: 0.9rem;">Learn More</a>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Predictive Maintenance</h3>
+                    <p>Reduce downtime by 40% with AI-driven equipment monitoring and predictive failure analysis.</p>
+                    <a href="#" class="btn btn-accent" style="margin-top: 20px; padding: 8px 16px; font-size: 0.9rem;">Learn More</a>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Smart Supply Chain</h3>
+                    <p>Optimize inventory and logistics with demand forecasting and real-time tracking solutions.</p>
+                    <a href="#" class="btn btn-accent" style="margin-top: 20px; padding: 8px 16px; font-size: 0.9rem;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px; color: #8892b0;">Discover the powerful features that make our textile AI solutions stand out from the competition.</p>
+            <div class="feature-list">
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Real-time Defect Detection</h3>
+                    <p>Instant identification of weaving defects, color variations, and material flaws with our advanced computer vision technology that learns and improves over time.</p>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Production Optimization</h3>
+                    <p>AI algorithms analyze production data to maximize throughput while minimizing waste and energy consumption across your entire operation.</p>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Sustainability Analytics</h3>
+                    <p>Comprehensive tracking and reduction of water, energy, and chemical usage across your production facilities with actionable insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="section benefits">
+        <div class="container">
+            <h2 class="section-title">Measurable Business Benefits</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px; color: #8892b0;">Our clients consistently achieve significant improvements across key operational metrics.</p>
+            <div class="benefits-grid">
+                <div class="benefit-metric" data-aos="fade-up" data-aos-delay="100">
+                    <div class="metric-value">30-50%</div>
+                    <div class="metric-label">Reduction in quality control costs</div>
+                </div>
+                <div class="benefit-metric" data-aos="fade-up" data-aos-delay="200">
+                    <div class="metric-value">25%</div>
+                    <div class="metric-label">Increase in production efficiency</div>
+                </div>
+                <div class="benefit-metric" data-aos="fade-up" data-aos-delay="300">
+                    <div class="metric-value">90%</div>
+                    <div class="metric-label">Fewer customer returns</div>
+                </div>
+                <div class="benefit-metric" data-aos="fade-up" data-aos-delay="400">
+                    <div class="metric-value">15-20%</div>
+                    <div class="metric-label">Reduction in material waste</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases" id="use-cases">
+        <div class="container">
+            <h2>Textile Industry Applications</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px; color: #8892b0;">Our AI solutions are transforming every stage of textile production.</p>
+            <div class="cards">
+                <div class="use-case-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="use-case-container">
+                        <img src="fabric.jpg" alt="Fabric Inspection" class="use-case-image">
+                        <div class="use-case-overlay">
+                            <div class="use-case-text">
+                                <ul>
+                                    <li>Automatic defect detection for holes, stains, and weaving errors</li>
+                                    <li>Pattern consistency checks across production runs</li>
+                                    <li>Color matching analysis with spectrophotometric precision</li>
+                                    <li>Real-time alerts for quality deviations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="industry-title">Fabric Inspection</h3>
+                    <p class="industry-description">Automated visual inspection that outperforms human capabilities in speed and accuracy.</p>
+                </div>
+                <div class="use-case-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="use-case-container">
+                        <img src="garment.jpg" alt="Garment Production" class="use-case-image">
+                        <div class="use-case-overlay">
+                            <div class="use-case-text">
+                                <ul>
+                                    <li>Seam quality inspection with millimeter precision</li>
+                                    <li>Stitch pattern verification for consistency</li>
+                                    <li>Label placement checks for compliance</li>
+                                    <li>Automated grading of finished garments</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="industry-title">Garment Production</h3>
+                    <p class="industry-description">End-to-end quality control from cutting to final assembly.</p>
+                </div>
+                <div class="use-case-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="use-case-container">
+                        <img src="dyeing.jpg" alt="Dyeing Process" class="use-case-image">
+                        <div class="use-case-overlay">
+                            <div class="use-case-text">
+                                <ul>
+                                    <li>Color consistency monitoring across batches</li>
+                                    <li>Dye absorption analysis for optimal results</li>
+                                    <li>Chemical usage optimization algorithms</li>
+                                    <li>Waste reduction tracking and reporting</li>
+                                    <li>Automated shade matching technology</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="industry-title">Dyeing Process</h3>
+                    <p class="industry-description">Precision control for consistent, sustainable coloration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="section technology" id="technology">
+        <div class="container">
+            <h2 class="section-title">Our Technology Stack</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px; color: #8892b0;">We leverage cutting-edge technologies to deliver unparalleled textile manufacturing solutions.</p>
+            <div class="tech-stack">
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tech-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="tech-name">Computer Vision</div>
+                    <div class="tech-desc">Advanced image recognition for defect detection</div>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="tech-name">Deep Learning</div>
+                    <div class="tech-desc">Neural networks that improve with experience</div>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tech-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="tech-name">Predictive Analytics</div>
+                    <div class="tech-desc">Anticipate issues before they occur</div>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="tech-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="tech-name">Cloud Computing</div>
+                    <div class="tech-desc">Scalable infrastructure for any operation size</div>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="tech-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="tech-name">IoT Integration</div>
+                    <div class="tech-desc">Seamless connection with your existing equipment</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <h2 class="section-title" style="color: #e6f1ff;">Frequently Asked Questions</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px; color: #8892b0;">Find answers to common questions about our textile AI solutions.</p>
+            <div class="faq-container">
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question">
+                        <span>How accurate is your defect detection system?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our system achieves 99.7% accuracy in defect detection, significantly outperforming human inspectors who typically achieve 70-80% accuracy. The AI continuously learns and improves over time, adapting to new defect patterns and material variations.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question">
+                        <span>How long does implementation typically take?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most implementations are completed within 4-8 weeks, depending on the complexity of your operation and the number of inspection points. Our team works closely with yours to ensure minimal disruption to your production schedule during installation and training.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question">
+                        <span>Can the system integrate with our existing equipment?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, our solutions are designed to integrate seamlessly with most existing textile manufacturing equipment. We support standard industrial communication protocols and can develop custom interfaces when needed. Our engineers will assess your specific setup during the consultation phase.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-question">
+                        <span>What kind of ROI can we expect?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our clients typically see ROI within 6-12 months through a combination of reduced waste, lower labor costs, decreased customer returns, and increased production efficiency. The exact timeframe depends on your specific operation and which solutions you implement.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="faq-question">
+                        <span>How does your pricing model work?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer flexible pricing models including subscription-based SaaS options and traditional perpetual licenses. Pricing is based on the scale of your operation and the specific solutions you require. Contact us for a customized quote tailored to your needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Yantra AI</h4>
+                <p>Get in Touch</p>
+                <div class="social-icons">
+                    <a href="#" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/yantraaisolutions" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@yantraai.in" target="_blank"  aria-label="email">            
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Industries</h4>
+                <a href="retail.html">Retail</a>
+                <a href="food.html">Food</a>
+                <a href="textile.html">Textile Mill</a>
+                <a href="warehouse.html">Warehouses</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookies Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Documentation</a>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="aboutpage.html">About Us</a>
+                <a href="careerpage.html">Careers</a>
+                <a href="#">Blog</a>
+                <a href="contactpage.html">Contact</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Yantra AI. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            startEvent: 'DOMContentLoaded'
+        });
+
+        // Mobile navbar toggle
+        document.addEventListener("DOMContentLoaded", () => {
+            const burger = document.getElementById('hamburger');
+            const nav = document.querySelector('.nav-links');
+            const industriesToggle = document.querySelector('.industries-toggle');
+            const dropdown = document.querySelector('.dropdown');
+            
+            burger.addEventListener('click', () => {
+                const isOpen = burger.classList.toggle('open');
+                burger.setAttribute('aria-expanded', isOpen);
+                nav.classList.toggle('open');
+                if (!isOpen) {
+                    dropdown.parentElement.classList.remove('open');
+                }
+            });
+            
+            industriesToggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    const isOpen = dropdown.parentElement.classList.toggle('open');
+                    dropdown.setAttribute('aria-expanded', isOpen);
+                }
+            });
+            
+            industriesToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && window.innerWidth <= 767) {
+                    e.preventDefault();
+                    const isOpen = dropdown.parentElement.classList.toggle('open');
+                    dropdown.setAttribute('aria-expanded', isOpen);
+                }
+            });
+            
+            document.querySelectorAll('.nav-links a:not(.industries-toggle)').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 767) {
+                        burger.classList.remove('open');
+                        burger.setAttribute('aria-expanded', false);
+                        nav.classList.remove('open');
+                        dropdown.parentElement.classList.remove('open');
+                        dropdown.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 767 && !e.target.closest('.nav-item') && !e.target.closest('.hamburger')) {
+                    dropdown.parentElement.classList.remove('open');
+                    dropdown.setAttribute('aria-expanded', false);
+                }
+            });
+
+            // FAQ accordion functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                    
+                    // Close other items when opening one
+                    if (item.classList.contains('active')) {
+                        faqItems.forEach(otherItem => {
+                            if (otherItem !== item && otherItem.classList.contains('active')) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
