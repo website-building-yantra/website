@@ -408,6 +408,7 @@
         .bento-box:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            background-color: #0b546e;
         }
 
         .value-proposition-section {
@@ -508,7 +509,7 @@
         .card {
             flex: 1 1 300px;
             max-width: 100%;
-            background-color: rgba(255, 255, 255, 0.1);
+             background-image: radial-gradient(circle, rgb(17, 76, 80),  rgb(9, 25, 34), rgb(13, 29, 47));
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -925,7 +926,7 @@
         }
 
         .signup-box button:hover {
-            background-color: rgb(95, 167, 243);
+            background-color: rgb(22, 18, 54);
             opacity: 0.9;
             transform: translateY(-2px);
         }
@@ -1593,7 +1594,7 @@
                 </div>
                 <h3 class="industry-title">Tourism/Hospitality</h3>
             </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="700">
+            <div class="card" data-aos="fade-up" data-aos-delay="700" >
                 <div class="container">
                     <img src="hospital.jpg" alt="Hospital Industry" class="image">
                     <div class="overlay">
@@ -1712,7 +1713,10 @@
                         <input type="checkbox" id="terms" required>
                         <label for="terms">I agree to the <a href="#">Terms & Privacy Policy</a></label>
                     </div>
-                    <button type="submit" class="cta-button">Submit Now</button>
+                    <button type="submit" class="cta-button" onclick="event.preventDefault(); alert('thank you , stay tuned for any updates')">
+                        Submit Now
+                    </button>
+
                 </form>
             </div>
         </div>
